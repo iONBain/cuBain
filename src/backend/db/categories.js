@@ -8,20 +8,20 @@ import { v4 as uuid } from "uuid";
 export const categories = [
   {
     _id: uuid(),
-    categoryName: "fiction",
+    categoryName: "Beginner",
     description:
-      "literature in the form of prose, especially novels, that describes imaginary events and people",
+      "Not sure where to begin your quest? See this for a head start.",
   },
   {
     _id: uuid(),
-    categoryName: "non-fiction",
+    categoryName: "Intermediate",
     description:
-      "Non-fiction is writing that gives information or describes real events, rather than telling a story.",
+      "If you are competent in the fundamentals and crave a challenge in daily life, go for this category."
   },
   {
     _id: uuid(),
-    categoryName: "horror",
+    categoryName: "Advanced",
     description:
-      "Meant to cause discomfort and fear for both the character and readers, horror writers often make use of supernatural and paranormal elements in morbid stories that are sometimes a little too realistic.",
+  "Fairly certain? Try this category, which is more complex than you would have imagined."
   },
 ];

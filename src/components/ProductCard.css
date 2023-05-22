@@ -1,0 +1,125 @@
+.wrap-card{
+    flex-grow: 1;
+    background-color: rgb(253, 253, 253);
+    /* background-blend-mode:multiply; */
+    border: 2px solid ;
+    display: flex;
+    flex-direction: column;
+    /* display: grid; */
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 250px;
+    position: relative;
+    isolation: isolate;
+    border-radius: 1rem;
+    margin: 0.5rem;
+    border: none;
+    transform: translate(0px,-3px);
+    transition: all 0.4s ease;
+}
+.wrap-card:hover{
+    /* box-shadow: 0px 12px 0px rgba(45, 156, 246, 0.373); */
+}
+.wrap-card:hover .img-prods{
+    filter:none;
+    transform: scale(1.3) translate(0px,7px);
+
+}
+.wrap-card h4{
+    text-align: center;
+    color: var(--shadowDarkBlue);
+    z-index: 100;
+    transition: all .2s ease;
+    transform: translate(0,-5px);
+}
+.wrap-card:hover h4{
+    transform: scale(0.9) translate(0px,0px);
+    /* text-decoration: underline; */
+    color: var(--lighterBlue);
+
+}
+.img-prods{
+    border-radius: 5px;
+    /* filter:grayscale(100%); */
+    transition: all 0.3s ease;
+    mix-blend-mode: multiply;
+    margin: 0 auto;
+}
+.prod-content{
+    width: 100%;
+    gap: 0.4rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+/* elements */
+.rating{
+    position: absolute;
+    font-size: smaller;
+    top: 1rem;
+    right: 0rem;
+    background-color: var(--green);
+    padding: 5px;
+    border-radius: .8rem 0 0 .8rem;
+}
+.rating-count{
+    color: rgb(73, 73, 73);
+    font-size: small;
+}
+.wish-fill{
+    color: aliceblue;
+    background-color: rgb(248, 88, 88);
+    
+}
+.recommended{
+    position: absolute;
+    top: 2.8rem;
+    left: 0rem;
+    background-color: rgba(245, 150, 26, 0.689);
+    color: white;
+    padding: 5px;
+    border-radius: 0 .8rem .8rem 0 ;
+    z-index: 100;
+    z-index: -2;
+    font-size: smaller;
+}
+.add-to-cart{
+    position: absolute;
+    bottom: .5rem;
+    min-width: 50%;
+    right:10%;
+}
+.add-to-wish{
+    position: absolute;
+    bottom: .5rem;
+    left: 10%;
+    width: 20%;
+
+}
+.prod-name{
+    width: 90%;
+    /* text-align: left !important; */
+}
+.prod-price{
+    color: var(--shadowDarkBlue);
+}
+.discount{
+    position: absolute;
+    top: 1rem;
+    left: 0rem;
+    background-color: rgb(255, 231, 199);
+    padding: 5px;
+    border-radius: 0 .8rem .8rem 0 ;
+    color: var(--shadowDarkBlue);
+}
+
+.strike-cp{
+    text-decoration: line-through;
+    color: var(--grey);
+    font-size: small;
+}
+.w-80{
+    min-width: 80%;
+}

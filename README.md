@@ -1,3 +1,3 @@
-## E-Commerce Backend
+## cUBain - Cube Website
 
-This folder contains the Mock Backend created for E-Commerce App. It contains different API end-points and database configuration for building E-Commerce; so that you can focus on building Frontend.
+This is a webapp which uses ReactJS to build Pages, Components and all kind of stuff.
