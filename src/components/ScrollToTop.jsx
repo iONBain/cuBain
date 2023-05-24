@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { DataContext } from "../contexts/DataContext";
 
+
 export default function ScrollToTop() {
     const { pathname } = useLocation();
     const {dataDispatch } = useContext(DataContext)
@@ -16,7 +17,7 @@ export default function ScrollToTop() {
                 type: "SET_LOADER",
                 payload: true,
               });
-        }, 3000);
+        }, 2000);
     }, [pathname]);
 
     return null;

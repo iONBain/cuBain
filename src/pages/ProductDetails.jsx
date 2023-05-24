@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DataContext } from "../contexts/DataContext";
 import "./Pages.css";
+import ToastHandler from "../utils";
 export const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -9,9 +10,12 @@ const ProductDetails = () => {
   const { productID } = useParams();
   const  navigate  = useNavigate();
   const {
-    data: { products: p },
+    data: { products: p,cart,wishlist },dataDispatch
   } = useContext(DataContext);
-  const product = p && p.find(({ id }) => id === "" + productID);
+  const product = p && p.find(({ id }) => id === productID);
+  const isInCart = cart.some(({id})=> id===product.id)
+  const isInWishlist = wishlist.filter(({ id: pId }) => pId === product.id).length > 0;
+ 
   const {
     name,
     imgLink,
@@ -21,22 +25,36 @@ const ProductDetails = () => {
     ratingCount,
     skill,
   } = product && product;
-  // console.log(product)
   const cp = Math.floor((price * 100) / (100 - dp), 10);
   const getRandomDay = getRandomNumber(2,5)
 
   const addToCart = () => {
-    
+    dataDispatch({
+      type: "ADD_TO_CART",
+      payload: product,
+    });
+
+    ToastHandler("success", "Added to cart!");
   }
   const addToFavs = () => {
-
+    if (isInWishlist) {
+      dataDispatch({
+        type: "REMOVE_FROM_WISHLIST",
+        payload: product,
+      });
+      ToastHandler("info", "Removed from favorites");
+    } else {
+      dataDispatch({
+        type: "ADD_TO_WISHLIST",
+        payload: product,
+      });
+      ToastHandler("success", "Added to favorites!");
+    }
   }
 
   return (
     <div className="product-details-main">
-      {/* <Link to="/productlisting" className="btn-details-back"> */}
         <button className="details-back btn" onClick={()=>navigate("/productlisting")}>Back to shopping</button>
-      {/* </Link> */}
       <section className="details-img">
         <img src={imgLink} alt="" className="details-img-image" />
       </section>
@@ -58,8 +76,8 @@ const ProductDetails = () => {
             <p className="sm color-grey">**Inclusive all taxes</p>
           </p>
       </section>
-      <button className="btn btn-details-cart" onClick={()=>addToCart()}>Add to Cart</button>
-      <button className="btn btn-details-wish" onClick={()=>addToFavs()}>Add to Favourites</button>
+      <button className={`btn btn-details-cart ${isInCart && "bg-less-dark"}`} onClick={isInCart ? ()=>navigate("/cart") : ()=>addToCart()}>{isInCart?"Go" : "Add"} to Cart</button>
+      <button className={`btn btn-details-wish ${isInWishlist && "bg-less-dark"}`} onClick={()=>addToFavs()}>{isInWishlist ? "Remove from" :"Add to"} Favourites</button>
     </div>
   );
 };

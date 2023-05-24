@@ -27,7 +27,7 @@ const Cart = () => {
   const isCartEmpty = cart.length === 0 ? true : false;
 
   return isCartEmpty ? (
-    <Emptiness />
+    <Emptiness  pageName="Cart" />
   ) : (
     <div className="cart-main flex-row">
       <section className="cart-display flex-col">

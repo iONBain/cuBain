@@ -12,6 +12,7 @@ import ScrollHeaderAnimate from "./components/ScrollHeaderAnimate";
 import Mockman from "mockman-js"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import WrongRoutePage from "./pages/WrongRoutePage";
 function App() {
   return (
     <div className="App">
@@ -27,6 +28,7 @@ function App() {
         <Route path="/cart" element = {<Cart />} />
         <Route path="/wishlist" element = {<Wishlist />} />
         <Route path="/mm" element = {<Mockman/>} />
+        <Route path="*" element={<WrongRoutePage />} /> 
       </Routes>
       <Footer/>
     </div>

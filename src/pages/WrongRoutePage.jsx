@@ -1,10 +1,13 @@
-import { NavLink } from "react-router-dom"
+import { useState } from "react";
+import "./Pages.css";
+import { NavLink } from "react-router-dom";
 
-const Emptiness = ({pageName}) => {
+const WrongRoutePage = () => {
+
     return <div className="flex-center">
     <h2 className="wish-center-empty">
     <span className="cursive accent">WOW!</span>
-    Such emptiness in {pageName} x0
+    Such emptiness x0
     <span className="normal-font mar-up-10">
         Browse our cube collection{" "}
         <NavLink to="/productlisting" className="accent"> here</NavLink>{" "}
@@ -13,4 +16,4 @@ const Emptiness = ({pageName}) => {
         </div>
 }
 
-export default Emptiness
+export default WrongRoutePage;

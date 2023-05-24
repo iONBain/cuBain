@@ -51,7 +51,7 @@ const CartProductCard = ({ item }) => {
         <p className="flex-row">
           <span className="cart-discount sm "> {dp}% OFF </span>
           <span className="cart-discount cart-cube-shape sm ">
-            {shapeType}{" "}
+            {shapeType.toUpperCase()}{" "}
           </span>
         </p>
         <p>

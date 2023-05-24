@@ -11,7 +11,7 @@ const Wishlist = () => {
   const isEmptyWishlist = wishlist.length === 0 ? true : false;
   return (
         isEmptyWishlist ? 
-           <Emptiness/>
+           <Emptiness pageName="Favs" />
        : (
                 
                 <div className="wishlist-main">
