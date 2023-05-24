@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
 import ProductCard from "../components/ProductCard";
-import { NavLink } from "react-router-dom";
 import Emptiness from "../components/Emptiness";
 
 const Wishlist = () => {

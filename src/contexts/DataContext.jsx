@@ -107,3 +107,6 @@ export const DataProvider = ({ children }) => {
     </DataContext.Provider>
   );
 };
+
+
+// is   get-->  "/api/user/cart"   delete--> "/api/user/cart/${id}" ,     add item api -->  "/api/user/cart"    get--> and post-->   "/api/user/wishlist" 

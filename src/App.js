@@ -8,7 +8,6 @@ import ProductDetails from "./pages/ProductDetails";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
-import ScrollHeaderAnimate from "./components/ScrollHeaderAnimate";
 import Mockman from "mockman-js"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +16,6 @@ function App() {
   return (
     <div className="App">
       <ScrollToTop/>
-      <ScrollHeaderAnimate/>
       <ToastContainer />
       <Header />
       <Routes>
