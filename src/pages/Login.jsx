@@ -3,13 +3,12 @@ import "./Pages.css";
 import { loginService } from "../services/login";
 import { signUpService } from "../services/signup";
 import { AuthContext } from "../contexts/AuthContext";
-import { DataContext } from "../contexts/DataContext";
-import { json } from "react-router-dom";
+// import { DataContext } from "../contexts/DataContext";
 
 const Login = () => {
   const [btnState,setBtnState] = useState(false)
   const {token,setToken,loginUser,foundUser,LSUser} = useContext(AuthContext)
-  const {dataDispatch} = useContext(DataContext)
+  // const {dataDispatch} = useContext(DataContext)
   const emailRef = useRef()
   const passwordRef = useRef()
   // console.log(LSUser.user?.firstName,"lsuser")
@@ -19,6 +18,7 @@ const Login = () => {
     console.log( status,encodedToken,foundUser)
   }
   const handleLogOut = async ()=> {
+    console.log(foundUser)
     setToken("")
     localStorage.removeItem("login")
     localStorage.removeItem("user")
@@ -31,6 +31,7 @@ const Login = () => {
       const bodyLoginTest = {email:"programmer@neog.com",password:"neoGrammer"}
       const res = await loginUser(bodyLoginTest)
       setToken(localStorage.getItem("login"))
+      console.log(await res, "ress")
     }
     catch(e) {
       console.error(e)

@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { DataContext } from "../index";
 import CartProductCard from "../components/CartProductCard";
-import { NavLink, useNavigate } from "react-router-dom";
 import Emptiness from "../components/Emptiness";
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const {
     data: { cart },

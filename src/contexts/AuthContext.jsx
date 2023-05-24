@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
       //   payload: user.address,
       // });
     }
-  }, []);
+  }, [token]);
   return (
     <AuthContext.Provider value={{ token, setToken, LSUser,loginUser, signUpUser, user, setUser }}>
       {children}
