@@ -10,14 +10,20 @@ export const DataProvider = ({ children }) => {
   const navigate = useNavigate()
   const getData = async () => {
     try {
-      const { data: category } = await axios("/api/categories");
-      // const res = await fetch("/api/categories");
-      // const { data: category } = await res.json()
+      // const { data: category } = await axios("/api/categories");
+      const res = await axios("/api/categories");
+      const category = await res.data.categories
+      // console.log(res,"res")
+
+
       dispatch({
         type: "INITIALIZE_CATEGORIES",
-        payload: category.categories,
+        // payload: category.categories,
+        payload: category,
       });
-      category.categories.map(({ categoryName }) => {
+      
+      // category.categories.map(({ categoryName }) => {
+      category.map(({ categoryName }) => {
         dispatch({
           type: "SET_SKILL",
           payload: [categoryName, false],
