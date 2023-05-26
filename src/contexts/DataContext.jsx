@@ -10,7 +10,7 @@ export const DataProvider = ({ children }) => {
   const navigate = useNavigate()
   const getData = async () => {
     try {
-      // const { data: category } = await axios("/api/categories");
+      // const { data: category } = await axios.get("/api/categories");
       const res = await fetch("/api/categories");
       // console.log(await res.json(),"res")
       const category = (await res.json()).categories
@@ -31,10 +31,12 @@ export const DataProvider = ({ children }) => {
         });
         return null;
       });
+      // const resProducts = await axios.get("/api/products");
       const resProducts = await fetch("/api/products");
       const products = (await resProducts.json()).products
       dispatch({
         type: "INITIALIZE_PRODUCTS",
+        // payload: products.products,
         payload: products,
       });
     } catch (e) {
@@ -42,12 +44,12 @@ export const DataProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => getData, []);
   useEffect(()=> {
     state.search && navigate("/productlisting")
   }
   ,[state.search,navigate])
   useEffect(() => console.log(state, "DataContext"), [state]);
+  useEffect(() => {getData()}, []);
   
   
   // loading cart init
