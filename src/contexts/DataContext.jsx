@@ -11,9 +11,10 @@ export const DataProvider = ({ children }) => {
   const getData = async () => {
     try {
       // const { data: category } = await axios("/api/categories");
-      const res = await axios("/api/categories");
-      const category = await res.data.categories
-      console.log(res,"res")
+      const res = await fetch("/api/categories");
+      // console.log(await res.json(),"res")
+      const category = (await res.json()).categories
+      // console.log(res,"res")
 
 
       dispatch({
@@ -30,10 +31,11 @@ export const DataProvider = ({ children }) => {
         });
         return null;
       });
-      const { data: products } = await axios("/api/products");
+      const resProducts = await fetch("/api/products");
+      const products = (await resProducts.json()).products
       dispatch({
         type: "INITIALIZE_PRODUCTS",
-        payload: products.products,
+        payload: products,
       });
     } catch (e) {
       console.error(e);
