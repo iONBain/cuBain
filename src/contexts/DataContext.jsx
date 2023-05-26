@@ -13,7 +13,7 @@ export const DataProvider = ({ children }) => {
       // const { data: category } = await axios("/api/categories");
       const res = await axios("/api/categories");
       const category = await res.data.categories
-      // console.log(res,"res")
+      console.log(res,"res")
 
 
       dispatch({
