@@ -1,10 +1,11 @@
+import CarouselComponent from "../components/CarouselComponent";
 import CategoriesSel from "../components/CategoriesSel";
 import "./Pages.css"
 const Home = () => {
   return (
     <div className="home-main">
-      <div style={{ height: "100vh", backgroundColor: "rgb(224, 78, 78)" }}>
-        This is Hero image
+      <div className="carousel-wrapper">
+        <CarouselComponent/>
       </div>
       <section className="category-wrapper">
         <CategoriesSel />

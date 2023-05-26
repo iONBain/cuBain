@@ -10,7 +10,9 @@ export const DataProvider = ({ children }) => {
   const navigate = useNavigate()
   const getData = async () => {
     try {
-      const { data: category } = await axios.get("/api/categories");
+      const { data: category } = await axios("/api/categories");
+      // const res = await fetch("/api/categories");
+      // const { data: category } = await res.json()
       dispatch({
         type: "INITIALIZE_CATEGORIES",
         payload: category.categories,
@@ -22,7 +24,7 @@ export const DataProvider = ({ children }) => {
         });
         return null;
       });
-      const { data: products } = await axios.get("/api/products");
+      const { data: products } = await axios("/api/products");
       dispatch({
         type: "INITIALIZE_PRODUCTS",
         payload: products.products,

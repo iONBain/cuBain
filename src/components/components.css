@@ -286,3 +286,19 @@
   transform: scale(1.2);
 }
 
+/* carousel */
+.carousel-item{
+  border: 2px solid red;
+  
+}
+.carousel-main{
+  /* border: 2px solid blue; */
+  /* display: gr; */
+  margin: auto 0;
+  align-self: center;
+  height: 100%;
+  overflow: hidden;
+}
+.carousel-image{
+  border-radius: 50%;
+}
