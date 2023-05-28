@@ -10,35 +10,28 @@ export const DataProvider = ({ children }) => {
   const navigate = useNavigate()
   const getData = async () => {
     try {
-      // const { data: category } = await axios.get("/api/categories");
-      const res = await fetch("/api/categories");
-      // console.log(await res.json(),"res")
-      const category = (await res.json()).categories
-      // console.log(res,"res")
-
-
-      dispatch({
-        type: "INITIALIZE_CATEGORIES",
-        // payload: category.categories,
-        payload: category,
-      });
-      
-      // category.categories.map(({ categoryName }) => {
-      category.map(({ categoryName }) => {
+      const { status:statusCategories,data: category } = await axios.get("/api/categories");
+      if(statusCategories===200){
+        dispatch({
+          type: "INITIALIZE_CATEGORIES",
+          payload: category.categories,
+        });
+      }
+      category.categories.map(({ categoryName }) => {
         dispatch({
           type: "SET_SKILL",
           payload: [categoryName, false],
         });
         return null;
       });
-      // const resProducts = await axios.get("/api/products");
-      const resProducts = await fetch("/api/products");
-      const products = (await resProducts.json()).products
-      dispatch({
-        type: "INITIALIZE_PRODUCTS",
-        // payload: products.products,
-        payload: products,
-      });
+      const {status,data:{products}} = await axios.get("/api/products");
+      if(status===200){
+
+        dispatch({
+          type: "INITIALIZE_PRODUCTS",
+          payload: products,
+        });
+      }
     } catch (e) {
       console.error(e);
     }
@@ -59,6 +52,3 @@ export const DataProvider = ({ children }) => {
     </DataContext.Provider>
   );
 };
-
-
-// is   get-->  "/api/user/cart"   delete--> "/api/user/cart/${id}" ,     add item api -->  "/api/user/cart"    get--> and post-->   "/api/user/wishlist" 

@@ -17,7 +17,10 @@ export default function ScrollToTop() {
                 type: "SET_LOADER",
                 payload: false,
               });
-        }, 3500);
+        }, 
+        
+        // 3500);
+        500);
     }, [pathname,dataDispatch]);
 
     return null;
