@@ -20,7 +20,7 @@ const Wishlist = () => {
                     </h2>
                     <div className="product-card-container mar-up-10">
                     {wishlist &&
-                        wishlist.map((i) => <ProductCard wish item={i} key={i.id} />)}
+                        wishlist.map((i) => <ProductCard wish item={i} key={i._id} />)}
                     </div>
               </div>
             

@@ -12,10 +12,12 @@ import Mockman from "mockman-js"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import WrongRoutePage from "./pages/WrongRoutePage";
+import Loader from "./pages/Loader";
 function App() {
   return (
     <div className="App">
       <ScrollToTop/>
+      {/* <Loader/> */}
       <ToastContainer />
       <Header />
       <Routes>

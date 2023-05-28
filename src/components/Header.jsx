@@ -6,11 +6,12 @@ import {
   faHeart,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
 
 const Header = () => {
+  const navigate = useNavigate()
   const { data:{search,cart,wishlist},dataDispatch } = useContext(DataContext);
   const handleSearch = (e) => {
     dataDispatch({
@@ -18,7 +19,6 @@ const Header = () => {
       payload: e.target.value,
     });
   };
-  // const getCntCart = cart.reduce((count,)=> ,0)
   const getCntCart = cart.length
   const getCntWish = wishlist.length
   const getActiveStyle = ({isActive}) => ({
@@ -38,6 +38,7 @@ const Header = () => {
         type="text"
       />
       <section className="flex-row header-nav-icons-container">
+        <button onClick={()=> navigate("/mm")}>  Mockman</button>
         <NavLink style={getActiveStyle}  to="/productlisting" className="no-style tooltip">
           <FontAwesomeIcon icon={faCube} size="lg" />
           <p className="tooltiptext color-white"> Cubes</p>

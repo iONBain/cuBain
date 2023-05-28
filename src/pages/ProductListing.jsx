@@ -57,7 +57,7 @@ const ProductListing = () => {
         </h2>
         <div className="product-card-container">
           {filteredGal &&
-            filteredGal.map((i) => <ProductCard item={i} key={i.id} />)}
+            filteredGal.map((i) => <ProductCard item={i} key={i._id} />)}
         </div>
       </div>
     </div>

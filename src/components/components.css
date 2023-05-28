@@ -64,6 +64,7 @@
 }
 .header-cart{
   position: relative;
+  /* border: 2px solid white; */
 }
 .header-cart span{
   position: absolute;

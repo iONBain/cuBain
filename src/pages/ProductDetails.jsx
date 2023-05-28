@@ -1,20 +1,37 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DataContext } from "../contexts/DataContext";
 import "./Pages.css";
-import ToastHandler from "../utils";
-export const getRandomNumber = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+import ToastHandler, {getCostPrice, getRandomNumber} from "../utils";
+import axios from "axios"
+import { addToCart } from "../utils/cartAPIs";
+import { AuthContext } from "../contexts/AuthContext";
+import { addToWishlist,removeFromWishlist } from "../utils/wishAPIs";
+
 const ProductDetails = () => {
   const { productID } = useParams();
   const  navigate  = useNavigate();
+  const {token} = useContext(AuthContext)
+  const [product, setProduct] = useState([])
   const {
-    data: { products: p,cart,wishlist },dataDispatch
+    data: {cart,wishlist },dataDispatch
   } = useContext(DataContext);
-  const product = p && p.find(({ id }) => id === productID);
-  const isInCart = cart.some(({id})=> id===product.id)
-  const isInWishlist = wishlist.filter(({ id: pId }) => pId === product.id).length > 0;
+  useEffect(()=>{
+    (async ()=>{
+      try{
+        const {status,data} = await axios.get(`/api/products/${productID}`)
+        if(status===200){
+          setProduct(data.product)
+        }
+      }
+      catch(e){
+        console.error(e)
+      }
+    })()
+  },[productID])
+
+  const isInCart = cart.some(({_id})=> _id===product._id)
+  const isInWishlist = wishlist.some(({ _id: pId }) => pId === product._id);
  
   const {
     name,
@@ -25,29 +42,28 @@ const ProductDetails = () => {
     ratingCount,
     skill,
   } = product && product;
-  const cp = Math.floor((price * 100) / (100 - dp), 10);
+  const cp = getCostPrice(price,dp)
   const getRandomDay = getRandomNumber(2,5)
 
-  const addToCart = () => {
-    dataDispatch({
-      type: "ADD_TO_CART",
-      payload: product,
-    });
-
+  const addToCartHandler = () => {
+    addToCart(product,token,dataDispatch)
     ToastHandler("success", "Added to cart!");
   }
+  
   const addToFavs = () => {
     if (isInWishlist) {
-      dataDispatch({
-        type: "REMOVE_FROM_WISHLIST",
-        payload: product,
-      });
+      // dataDispatch({
+      //   type: "REMOVE_FROM_WISHLIST",
+      //   payload: product,
+      // });
+      removeFromWishlist(product._id,token,dataDispatch)
       ToastHandler("info", "Removed from favorites");
     } else {
-      dataDispatch({
-        type: "ADD_TO_WISHLIST",
-        payload: product,
-      });
+      addToWishlist(product,token,dataDispatch)
+      // dataDispatch({
+      //   type: "ADD_TO_WISHLIST",
+      //   payload: product,
+      // });
       ToastHandler("success", "Added to favorites!");
     }
   }
@@ -76,46 +92,11 @@ const ProductDetails = () => {
             <p className="sm color-grey">**Inclusive all taxes</p>
           </p>
       </section>
-      <button className={`btn btn-details-cart ${isInCart && "bg-less-dark"}`} onClick={isInCart ? ()=>navigate("/cart") : ()=>addToCart()}>{isInCart?"Go" : "Add"} to Cart</button>
+      <button className={`btn btn-details-cart ${isInCart && "bg-less-dark"}`} onClick={isInCart ? ()=>navigate("/cart") : ()=>addToCartHandler()}>{isInCart?"Go" : "Add"} to Cart</button>
       <button className={`btn btn-details-wish ${isInWishlist && "bg-less-dark"}`} onClick={()=>addToFavs()}>{isInWishlist ? "Remove from" :"Add to"} Favourites</button>
     </div>
   );
 };
 
-/**
- * discountPercentage
-: 
-"33"
-id
-: 
-"f43397c7-1dc0-4078-88d3-50dac0544db1"
-imgLink
-: 
-"https://drive.google.com/uc?export=view&id=1lugyj9KGU0dMol4DGJ9iDWsNfkTDfmQ1"
-isRecommended
-: 
-true
-name
-: 
-"Drift 2M 2x2 (Magnetic)"
-price
-: 
-499
-rating
-: 
-4
-ratingCount
-: 
-282
-shapeType
-: 
-"cube"
-skill
-: 
-"Beginner"
-[[Prototype]]
-: 
-Object
- */
 
 export default ProductDetails;

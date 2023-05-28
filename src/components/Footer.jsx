@@ -7,7 +7,6 @@ const Footer = () => {
 <div className="footer z-50">
 
     <section className="flex-row footer-socials">
-      {/* <p> <FontAwesomeIcon icon={faPlantWilt}/></p> */}
       <a className="no-style"  href="https://twitter.com/iONBain" target="_blank" rel="noreferrer">
       <FontAwesomeIcon className="hover-mouse" icon={faTwitter} />
       </a>

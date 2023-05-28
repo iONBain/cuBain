@@ -1,70 +1,53 @@
-import { Link, useNavigate } from "react-router-dom";
-import ToastHandler from "../utils";
-
-import "./ProductCard.css";
 import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { DataContext } from "../contexts/DataContext";
+import ToastHandler, { getCostPrice } from "../utils";
+import "./ProductCard.css";
+import { addToCart } from "../utils/cartAPIs";
+import { AuthContext } from "../contexts/AuthContext";
+import { addToWishlist, removeFromWishlist } from "../utils/wishAPIs";
+
 const ProductCard = ({ item, wish }) => {
   const {
     name,
     imgLink,
-    id,
+    _id,
     rating,
     ratingCount,
     price,
     isRecommended,
     discountPercentage: dp,
   } = item;
+
   const {
     data: { cart, wishlist },
     dataDispatch,
   } = useContext(DataContext);
+  const { token } = useContext(AuthContext);
   const navigate = useNavigate();
-  // isInCart ? navigate("/cart") :
-  const handleAddToCart = () => {
-    if (wish) {
-      dataDispatch({
-        type: "REMOVE_FROM_WISHLIST",
-        payload: item,
-      });
-      dataDispatch({
-        type: "ADD_TO_CART",
-        payload: item,
-      });
-      ToastHandler("success", "Moved to cart :p");
-    } else {
-      dataDispatch({
-        type: "ADD_TO_CART",
-        payload: item,
-      });
 
-      ToastHandler("success", "Added to cart!");
-    }
+  const handleAddToCart = () => {
+    addToCart(item, token, dataDispatch);
+    ToastHandler("success", "Added to cart!");
   };
 
   const handleAddToWishlist = () => {
     if (isInWishlist) {
-      dataDispatch({
-        type: "REMOVE_FROM_WISHLIST",
-        payload: item,
-      });
+      removeFromWishlist(item._id, token, dataDispatch);
       ToastHandler("info", "Removed from favorites");
     } else {
-      dataDispatch({
-        type: "ADD_TO_WISHLIST",
-        payload: item,
-      });
+      addToWishlist(item, token, dataDispatch);
       ToastHandler("success", "Added to favorites!");
     }
   };
 
-  const isInCart = cart.filter(({ id: pId }) => pId === id).length > 0;
-  const isInWishlist = wishlist.filter(({ id: pId }) => pId === id).length > 0;
-  const cp = Math.floor((price * 100) / (100 - dp), 10);
+  const isInCart = cart.some(({ _id: pId }) => pId === _id);
+  const isInWishlist = wishlist.some(({ _id: pId }) => pId === _id);
+  const cp = getCostPrice(price, dp);
 
   return (
     <div className="wrap-card">
-      <Link to={`/productdetails/${id}`} className="navLink">
+      <Link to={`/productdetails/${_id}`} className="navLink">
         <div className="flex-col prod-content">
           <p className="rating">
             {rating} &#9733;
@@ -95,7 +78,6 @@ const ProductCard = ({ item, wish }) => {
           }`}
           onClick={() => handleAddToWishlist()}
         >
-          {" "}
           &#9829;
         </button>
       )}

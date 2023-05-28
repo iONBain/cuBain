@@ -86,44 +86,25 @@ export function dataReducer(state, action) {
           ...action.payload,
         },
       };
-    case "ADD_TO_CART":
-      return {
+    case "UPDATE_WISHLIST":
+      return{
         ...state,
-        cart: [...state.cart ,{...action.payload,qty:1 }],
-      };
-
+        wishlist : action.payload
+      }
+    case "UPDATE_CART":
+      return{
+        ...state,
+        cart : action.payload
+      }
+    case "UPDATE_QTY_IN_CART":
+      return{
+        ...state,
+        cart : action.payload
+      }
     case "CLEAR_CART":
       return {
         ...state,
         cart: [],
-      };
-
-    case "UPDATE_QTY_IN_CART_INC":
-      return {
-        ...state,
-        cart: state.cart.map(item=> item.id===action.payload.id ? ({...item,qty:item.qty+1}) : item ) ,
-      };
-    case "UPDATE_QTY_IN_CART_DEC":
-      return {
-        ...state,
-        cart: state.cart.map(item=> item.id===action.payload.id ? ({...item,qty:item.qty-1}) : item ) ,
-      };
-    case "REMOVE_FROM_CART":
-      return {
-        ...state,
-        cart: state.cart.filter(({id})=> id!==action.payload.id),
-      };
-
-    case "ADD_TO_WISHLIST":
-      return {
-        ...state,
-        wishlist: [...state.wishlist ,action.payload],
-      };
-
-    case "REMOVE_FROM_WISHLIST":
-      return {
-        ...state,
-        wishlist: state.wishlist.filter(({id})=> id!==action.payload.id)
       };
     case "ADDRESS":
       return {

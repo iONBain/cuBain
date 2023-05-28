@@ -3,26 +3,21 @@ import { DataContext } from "../index";
 import CartProductCard from "../components/CartProductCard";
 import Emptiness from "../components/Emptiness";
 import { useNavigate } from "react-router-dom";
+import {getCostPrice, getRandomNumber} from "../utils"
 const Cart = () => {
   const {
     data: { cart },
   } = useContext(DataContext);
   const navigate = useNavigate()
-  const getRandomNumber = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
   const getRandomDay = getRandomNumber(2,5)
-  const calcCP = (sp, discount) =>
-    Math.floor((sp * 100) / (100 - discount), 10);
   const finPrice = cart.reduce(
     ({ finSP, finCP,totalCubes }, { price, qty, discountPercentage: dp }) => ({
       finSP: finSP + price * qty,
-      finCP: calcCP(price, dp) * qty + finCP,
+      finCP: getCostPrice(price, dp) * qty + finCP,
       totalCubes: totalCubes + qty
     }),
     { finSP: 0, finCP: 0, totalCubes:0 }
   );
-  // const finCP =
 
   const isCartEmpty = cart.length === 0 ? true : false;
 
@@ -35,7 +30,7 @@ const Cart = () => {
         <section className="cart-display-items mar-up-10 pad-r-10">
 
         {cart.map((cartItem) => (
-          <CartProductCard item={cartItem} key={cartItem.id} />
+          <CartProductCard item={cartItem} key={cartItem._id} />
           ))}
           </section>
       </section>

@@ -1,46 +1,40 @@
 import { useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
-import ToastHandler from "../utils";
+import ToastHandler, { getCostPrice } from "../utils";
 import { useNavigate } from "react-router-dom";
+import { removeFromCart, updateQtyCart } from "../utils/cartAPIs";
+import { AuthContext } from "../contexts/AuthContext";
+import { addToWishlist } from "../utils/wishAPIs";
 
 const CartProductCard = ({ item }) => {
   const { name, price, discountPercentage: dp, imgLink, shapeType, qty } = item;
-  const cp = Math.floor((price * 100) / (100 - dp), 10);
+  const cp = getCostPrice(price,dp);
+  const {token} = useContext(AuthContext)
   const {
     data: { wishlist },
     dataDispatch,
   } = useContext(DataContext);
-  const isInWishlist = wishlist.some(({ id }) => id === item.id);
+  const isInWishlist = wishlist.some(({ _id }) => _id === item._id);
   const navigate = useNavigate()
+
   const handleRemoveFromCart = (bool) => {
-    dataDispatch({
-      type: "REMOVE_FROM_CART",
-      payload: item,
-    });
+    removeFromCart(item._id,token,dataDispatch)
     if (!bool) {
       ToastHandler("info", "Removed from Cart :(");
     }
   };
+  
   const handleAddToWishlist = () => {
     handleRemoveFromCart(true);
-    dataDispatch({
-      type: "ADD_TO_WISHLIST",
-      payload: item,
-    });
+    addToWishlist(item,token,dataDispatch)
     ToastHandler("info", "Moved to favourites ;p");
   };
 
   const handleUpdateCart = (incOrDec) => {
-    incOrDec
-      ? dataDispatch({
-          type: "UPDATE_QTY_IN_CART_INC",
-          payload: item,
-        })
-      : dataDispatch({
-          type: "UPDATE_QTY_IN_CART_DEC",
-          payload: item,
-        });
+    updateQtyCart(item._id,token,incOrDec,dataDispatch)
+
   };
+  
   return (
     <div className="cart-card-main flex-row">
       <section className="cart-img-cont">
@@ -79,11 +73,11 @@ const CartProductCard = ({ item }) => {
       </section>
       <section className="cart-quant flex-col">
         <p className="cart-quant-btns flex-row">
-          <button onClick={() => handleUpdateCart(false)} disabled={qty === 1}>
+          <button onClick={() => handleUpdateCart("decrement")} disabled={qty === 1}>
             -
           </button>
           <span>{qty}</span>
-          <button onClick={() => handleUpdateCart(true)}>+</button>
+          <button onClick={() => handleUpdateCart("increment")}>+</button>
         </p>
       </section>
     </div>

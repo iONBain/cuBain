@@ -54,6 +54,7 @@ export const AuthProvider = ({ children }) => {
       };
      
   useEffect(() => {
+    // console.log(token,"hey token")
     if (token) {
       // dataDispatch({
       //   type: ACTION_TYPE.INITIALIZE_ADDRESS,

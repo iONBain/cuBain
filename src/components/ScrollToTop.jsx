@@ -7,17 +7,17 @@ export default function ScrollToTop() {
     const { pathname } = useLocation();
     const {dataDispatch } = useContext(DataContext)
     useEffect(() => {
-        window.scrollTo(0, 0);
+        window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
         dataDispatch({
             type: "SET_LOADER",
-            payload: false,
+            payload: true,
           });
         setTimeout(() => {
             dataDispatch({
                 type: "SET_LOADER",
-                payload: true,
+                payload: false,
               });
-        }, 2000);
+        }, 3500);
     }, [pathname,dataDispatch]);
 
     return null;
