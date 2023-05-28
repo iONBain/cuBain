@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { removeFromCart, updateQtyCart } from "../utils/cartAPIs";
 import { AuthContext } from "../contexts/AuthContext";
 import { addToWishlist } from "../utils/wishAPIs";
+import { findItemIn } from "../utils/findItem";
 
 const CartProductCard = ({ item }) => {
   const { name, price, discountPercentage: dp, imgLink, shapeType, qty } = item;
@@ -14,7 +15,7 @@ const CartProductCard = ({ item }) => {
     data: { wishlist },
     dataDispatch,
   } = useContext(DataContext);
-  const isInWishlist = wishlist.some(({ _id }) => _id === item._id);
+  const isInWishlist = findItemIn(wishlist,item)
   const navigate = useNavigate()
 
   const handleRemoveFromCart = (bool) => {

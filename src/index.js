@@ -25,28 +25,3 @@ root.render(
     </Router>
   </StrictMode>
 );
-
-// Done
-// Home Page
-// Product Listing Page
-// Single Product Page
-// Filters by
-// Price
-// Category
-// Ratings
-// Search
-// Wishlist Management
-// Cart Management
-// Alerts
-// Loading 
-
-// ----------------------
-// In Progress
-// Sign-up
-// Login
-// Logout
-// Authentication
-
-// ----------------------
-// Address Management
-// Checkout

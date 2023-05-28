@@ -26,7 +26,11 @@ const Cart = () => {
   ) : (
     <div className="cart-main flex-row">
       <section className="cart-display flex-col">
-        <h2 className="cart-display-heading">Cart Items <span className="accent"> ({cart.length}) </span></h2>
+        {/* <h2 >Cart Items <span className="accent"> ({cart.length}) </span></h2> */}
+        <h2 className="cart-display-heading">
+                    <span className="cursive accent">{cart.length} cubes </span>
+                    in your Cart :0
+                    </h2>
         <section className="cart-display-items mar-up-10 pad-r-10">
 
         {cart.map((cartItem) => (

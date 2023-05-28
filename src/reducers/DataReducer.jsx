@@ -96,11 +96,6 @@ export function dataReducer(state, action) {
         ...state,
         cart : action.payload
         }
-    case "UPDATE_QTY_IN_CART":
-      return{
-        ...state,
-        cart : action.payload
-      }
     case "CLEAR_CART":
       return {
         ...state,

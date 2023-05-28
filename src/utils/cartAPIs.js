@@ -38,7 +38,7 @@ const updateQtyCart = async (id,token,incOrDec,dataDispatch) => {
     )
     if(status===200){
       dataDispatch({
-        type:"UPDATE_QTY_IN_CART",
+        type:"UPDATE_CART",
         payload: cart
       })
     }

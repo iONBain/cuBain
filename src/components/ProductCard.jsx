@@ -6,6 +6,7 @@ import "./ProductCard.css";
 import { addToCart } from "../utils/cartAPIs";
 import { AuthContext } from "../contexts/AuthContext";
 import { addToWishlist, removeFromWishlist } from "../utils/wishAPIs";
+import { findItemIn } from "../utils/findItem";
 
 const ProductCard = ({ item, wish }) => {
   const {
@@ -41,8 +42,8 @@ const ProductCard = ({ item, wish }) => {
     }
   };
 
-  const isInCart = cart.some(({ _id: pId }) => pId === _id);
-  const isInWishlist = wishlist.some(({ _id: pId }) => pId === _id);
+  const isInCart = findItemIn(cart,item)
+  const isInWishlist = findItemIn(wishlist,item)
   const cp = getCostPrice(price, dp);
 
   return (

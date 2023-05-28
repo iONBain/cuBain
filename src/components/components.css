@@ -64,7 +64,6 @@
 }
 .header-cart{
   position: relative;
-  /* border: 2px solid white; */
 }
 .header-cart span{
   position: absolute;
@@ -79,7 +78,6 @@
   transform: scale(0.7) translate(75%,-75%);
 }
 
-/* tooltips */
 /* tooltips */
 .tooltip {
     position: relative;
@@ -102,14 +100,12 @@
   }
   
 .tooltip:hover .tooltiptext {
-    /* display: block; */
     opacity: 1;
   }
 
 
 /* cart-p-cart */
 .cart-card-main{
-  /* max-height: 100px; */
   width: 100%;
   margin: .5rem 0;
   border: 2px solid;
@@ -137,7 +133,6 @@
 }
 
 .cart-details-con{
-  /* position: absolute; */
   gap: 10px;
   padding: 1rem;
 }
@@ -145,7 +140,6 @@
   max-width: 50%;
 }
 .btns-cart{
-  /* border: 2px solid red; */
   min-width: 250px;
 }
 .cart-discount{
@@ -218,7 +212,6 @@
     align-items: flex-start;
     gap: 10px;
     padding: 1rem;
-    /* height: fit-content; */
     min-width: 15%;
     overflow-y: scroll;
   }
@@ -244,24 +237,23 @@
   
   /* Mouse-over effects */
   .slider:hover {
-    opacity: 1; /* Fully shown on mouse-over */
+    opacity: 1; 
   }
   
-  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
   .slider::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
+    -webkit-appearance: none;
     appearance: none;
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: var(--lightestBlue); /* Green background */
-    cursor: pointer; /* Cursor on hover */
+    width: 25px; 
+    height: 25px; 
+    background: var(--lightestBlue); 
+    cursor: pointer; 
   }
   
   .slider::-moz-range-thumb {
-    width: 25px; /* Set a specific slider handle width */
-    height: 25px; /* Slider handle height */
-    background: var(--lightestBlue); /* Green background */
-    cursor: pointer; /* Cursor on hover */
+    width: 25px; 
+    height: 25px;
+    background: var(--lightestBlue); 
+    cursor: pointer; 
   }
 .label-price-bot{
   display: flex;
@@ -269,20 +261,18 @@
 }
 
 .footer{
-      display: flex;
-      gap: 10px;
-      padding: 0 10rem;
-      justify-content: space-between;
-      /* margin: 0 auto; */
-      align-items: center;
-      color: var(--shadowLightBlue);
-      background-color: var(--shadowDarkBlue);
-      min-height: 60px;
+  display: flex;
+  gap: 10px;
+  padding: 0 10rem;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--shadowLightBlue);
+  background-color: var(--shadowDarkBlue);
+  min-height: 60px;
   }
 .footer-socials{
   display: flex;
   justify-content: space-between;
-  /* flex-grow: 0.1; */
   gap: 12px;
   transform: scale(1.2);
 }
@@ -293,8 +283,6 @@
   
 }
 .carousel-main{
-  /* border: 2px solid blue; */
-  /* display: gr; */
   margin: auto 0;
   align-self: center;
   height: 100%;

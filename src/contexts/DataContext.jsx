@@ -10,20 +10,22 @@ export const DataProvider = ({ children }) => {
   const navigate = useNavigate()
   const getData = async () => {
     try {
+      
       const { status:statusCategories,data: category } = await axios.get("/api/categories");
       if(statusCategories===200){
         dispatch({
           type: "INITIALIZE_CATEGORIES",
           payload: category.categories,
         });
-      }
-      category.categories.map(({ categoryName }) => {
-        dispatch({
-          type: "SET_SKILL",
-          payload: [categoryName, false],
+        category.categories.map(({ categoryName }) => {
+          dispatch({
+            type: "SET_SKILL",
+            payload: [categoryName, false],
+          });
+          return null;
         });
-        return null;
-      });
+      }
+
       const {status,data:{products}} = await axios.get("/api/products");
       if(status===200){
 
@@ -41,7 +43,7 @@ export const DataProvider = ({ children }) => {
     state.search && navigate("/productlisting")
   }
   ,[state.search,navigate])
-  useEffect(() => console.log(state, "DataContext"), [state]);
+  // useEffect(() => console.log(state, "DataContext"), [state]);
   useEffect(() => {getData()}, []);
   
   

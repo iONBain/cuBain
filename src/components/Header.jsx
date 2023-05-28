@@ -38,7 +38,7 @@ const Header = () => {
         type="text"
       />
       <section className="flex-row header-nav-icons-container">
-        <button onClick={()=> navigate("/mm")}>  Mockman</button>
+        {/* <button onClick={()=> navigate("/mm")}>  Mockman</button> */}
         <NavLink style={getActiveStyle}  to="/productlisting" className="no-style tooltip">
           <FontAwesomeIcon icon={faCube} size="lg" />
           <p className="tooltiptext color-white"> Cubes</p>

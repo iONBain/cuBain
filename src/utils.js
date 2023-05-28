@@ -54,8 +54,8 @@ const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const getCostPrice = (price,discountPercentage) => {
-  return Math.floor((price * 100) / (100 - discountPercentage), 10);
+const getCostPrice = (sellingPrice,discountPercentage) => {
+  return Math.floor((sellingPrice * 100) / (100 - discountPercentage), 10);
 }
 
 export {getRandomNumber,getCostPrice}

@@ -1,11 +1,9 @@
 .wrap-card{
     flex-grow: 1;
     background-color: rgb(253, 253, 253);
-    /* background-blend-mode:multiply; */
     border: 2px solid ;
     display: flex;
     flex-direction: column;
-    /* display: grid; */
     align-items: center;
     justify-content: center;
     width: 200px;
@@ -19,7 +17,6 @@
     transition: all 0.4s ease;
 }
 .wrap-card:hover{
-    /* box-shadow: 0px 12px 0px rgba(45, 156, 246, 0.373); */
 }
 .wrap-card:hover .img-prods{
     filter:none;
@@ -35,13 +32,11 @@
 }
 .wrap-card:hover h4{
     transform: scale(0.9) translate(0px,0px);
-    /* text-decoration: underline; */
     color: var(--lighterBlue);
 
 }
 .img-prods{
     border-radius: 5px;
-    /* filter:grayscale(100%); */
     transition: all 0.3s ease;
     mix-blend-mode: multiply;
     margin: 0 auto;
@@ -100,7 +95,6 @@
 }
 .prod-name{
     width: 90%;
-    /* text-align: left !important; */
 }
 .prod-price{
     color: var(--shadowDarkBlue);
