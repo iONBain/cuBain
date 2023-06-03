@@ -6,7 +6,7 @@ import {
   faHeart,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
 
@@ -38,11 +38,9 @@ const Header = () => {
         type="text"
       />
       <section className="flex-row header-nav-icons-container">
-        {/* <button onClick={()=> navigate("/mm")}>  Mockman</button> */}
         <NavLink style={getActiveStyle}  to="/productlisting" className="no-style tooltip">
           <FontAwesomeIcon icon={faCube} size="lg" />
           <p className="tooltiptext color-white"> Cubes</p>
-          {/* <FontAwesomeIcon icon="fa-solid " /> */}
         </NavLink>
         <NavLink style={getActiveStyle} to="/cart" className="no-style tooltip header-cart">
           <span className={`bg-green ${getCntCart ? "" : "none"}`}>{getCntCart}</span>

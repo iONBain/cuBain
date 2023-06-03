@@ -12,6 +12,7 @@ const ManageAddress = () => {
     return <section className="address-box">
 address here
 <button onClick={()=>handleCloseAddress()} >Close</button>
+{/* {data} */}
     </section>
 }
 

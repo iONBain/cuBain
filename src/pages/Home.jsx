@@ -10,10 +10,7 @@ const Home = () => {
         <section className="hero-left">
           <h2 className="cursive f-xxl">HoLa Gracious Amigos</h2>
           <p className="normal-font f-xl">Welcome to cUBain !</p>
-          <p className="color-white">
-            Check out our favourite cubes {">>>>>>>>>>>>"}
-          </p>
-          <button className="btn btn-fun-home">Click to read a fun fact</button>
+
           <section>
             <p className="m-w-50">
               The number of possible combinations of a Rubik's Cube is
@@ -24,6 +21,10 @@ const Home = () => {
               And that too for a <span className="cursive"> REGULAR 3x3 !</span>{" "}
             </h3>
           </section>
+
+          <p className="color-white">
+            Check out our favourite cubes {">>>>>>>>>>>>"}
+          </p>
         </section>
         <section className="hero-right ">
           <CarouselComponent />

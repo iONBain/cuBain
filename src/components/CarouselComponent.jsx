@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from "react-responsive-carousel";
-import ProductCard from "./ProductCard";
 import { DataContext } from "../contexts/DataContext";
 import "./components.css";
 import { useNavigate } from "react-router-dom";
