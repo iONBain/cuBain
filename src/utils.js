@@ -58,5 +58,16 @@ const getCostPrice = (sellingPrice,discountPercentage) => {
   return Math.floor((sellingPrice * 100) / (100 - discountPercentage), 10);
 }
 
-export {getRandomNumber,getCostPrice}
+const getFinPrice = (cart) => {
+  return cart.reduce(
+    ({ finSP, finCP,totalCubes }, { price, qty, discountPercentage: dp }) => ({
+      finSP: finSP + price * qty,
+      finCP: getCostPrice(price, dp) * qty + finCP,
+      totalCubes: totalCubes + qty
+    }),
+    { finSP: 0, finCP: 0, totalCubes:0 }
+  );
+}
+
+export {getRandomNumber,getCostPrice,getFinPrice}
 export default ToastHandler

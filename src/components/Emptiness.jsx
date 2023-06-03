@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom"
 
 const Emptiness = ({pageName}) => {
-    return <div className="flex-center">
+    return <div className="flex-center flex-grow">
     <h2 className="wish-center-empty">
     <span className="cursive accent">WOW!</span>
     Such emptiness in {pageName} x0

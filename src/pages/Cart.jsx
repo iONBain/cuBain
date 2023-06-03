@@ -2,31 +2,32 @@ import { useContext } from "react";
 import { DataContext } from "../index";
 import CartProductCard from "../components/CartProductCard";
 import Emptiness from "../components/Emptiness";
-import { useNavigate } from "react-router-dom";
-import {getCostPrice, getRandomNumber} from "../utils"
+import {getFinPrice, getRandomNumber} from "../utils"
+import Coupons from "../components/Coupons";
 const Cart = () => {
   const {
     data: { cart },
   } = useContext(DataContext);
-  const navigate = useNavigate()
   const getRandomDay = getRandomNumber(2,5)
-  const finPrice = cart.reduce(
-    ({ finSP, finCP,totalCubes }, { price, qty, discountPercentage: dp }) => ({
-      finSP: finSP + price * qty,
-      finCP: getCostPrice(price, dp) * qty + finCP,
-      totalCubes: totalCubes + qty
-    }),
-    { finSP: 0, finCP: 0, totalCubes:0 }
-  );
+  const finPrice = getFinPrice(cart)
 
   const isCartEmpty = cart.length === 0 ? true : false;
-
+  const {data:{showCoupon,couponValue},dataDispatch} = useContext(DataContext)
+  const handleShowCoupon = () => {
+      dataDispatch({
+          type: "SET_COUPON",
+          payload: true,
+      })
+  }
+  const couponValueRs = Math.floor((finPrice.finSP + cart.length*10)* couponValue * 0.01,1 )
+  const discountValueRs = finPrice.finCP - finPrice.finSP
+  const packingValueRs = cart.length*10
   return isCartEmpty ? (
     <Emptiness  pageName="Cart" />
   ) : (
     <div className="cart-main flex-row">
+      <Coupons finPrice={finPrice}/>
       <section className="cart-display flex-col">
-        {/* <h2 >Cart Items <span className="accent"> ({cart.length}) </span></h2> */}
         <h2 className="cart-display-heading">
                     <span className="cursive accent">{cart.length} cubes </span>
                     in your Cart :0
@@ -45,13 +46,22 @@ const Cart = () => {
             <span>Price:</span> Rs. {finPrice.finCP}{" "}
           </p>
           <p>
+            <span>Discount:</span> <span className="color-orange">- Rs. {discountValueRs}</span> 
+          </p>
+          <p>
+            <span>Packing Charges:</span> Rs. {packingValueRs}
+          </p>
+          <p>
+            <span>Coupon: {couponValue===0 ? "" : <span className="color-grey sm">{couponValue}% OFF</span>}  </span> - Rs. {couponValueRs}
+          </p>
+          <p>
             <span> Amount payable:</span>{" "}
-            <span className="accent"> Rs.{finPrice.finSP} </span>{" "}
+            <span className="accent"> Rs.{finPrice.finSP + packingValueRs - couponValueRs} </span>{" "}
           </p>
           <span>
             You Saved{" "}
             <span className="color-green">
-              Rs. {finPrice.finCP - finPrice.finSP} !
+              Rs. {couponValueRs + discountValueRs} !
             </span>
           </span>
             <span className="mar-up-10">
@@ -65,7 +75,8 @@ const Cart = () => {
             </span>
           <p>
 
-        <button className="btn btn-cart" onClick={()=>navigate("/productlisting")}>Continue Shopping</button>
+        <button className="btn btn-cart" onClick={()=>handleShowCoupon()}>Apply Coupon {showCoupon}</button>
+        {/* <button className="btn btn-cart" onClick={()=>navigate("/productlisting")}>Continue Shopping</button> */}
         <button className="btn btn-cart">CheckOut </button>
           </p>
         </section>

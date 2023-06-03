@@ -22,7 +22,7 @@ const CategoriesSel = () => {
       {data.category.length !== 0
         ? data.category.map((i) => {
             return (
-              <NavLink to="/productlisting" className="navLink" key={i._id}>
+              <NavLink to="/productlisting" className="navLink" key={i._id} >
                 <div className="cat-card" onClick={()=>handleSkillAll( i.categoryName,true)}>
                 <img src={i.imgLink} height="100px" alt="" />
                   <h3>{i.categoryName}</h3>

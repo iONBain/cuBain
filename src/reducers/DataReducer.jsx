@@ -13,6 +13,9 @@ export const initialState = {
   cubeType: { cube: false, mod: false, pyramid: false, special: false },
   rating: "",
   loader:false,
+  showCoupon:false,
+  couponValue:0,
+  showAddress:false
 };
 
 export function dataReducer(state, action) {
@@ -112,6 +115,21 @@ export function dataReducer(state, action) {
         cart: [],
         wishlist: [],
         address: [],
+      };
+    case "SET_SHOW_ADDRESS":
+      return {
+        ...state,
+        showAddress:action.payload ,
+      };
+    case "SET_COUPON":
+      return {
+        ...state,
+        showCoupon:action.payload ,
+      };
+    case "SET_COUPON_VALUE":
+      return {
+        ...state,
+        couponValue:action.payload ,
       };
       case "SET_LOADER":
         return {

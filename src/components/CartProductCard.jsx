@@ -9,33 +9,41 @@ import { findItemIn } from "../utils/findItem";
 
 const CartProductCard = ({ item }) => {
   const { name, price, discountPercentage: dp, imgLink, shapeType, qty } = item;
-  const cp = getCostPrice(price,dp);
-  const {token} = useContext(AuthContext)
+  const cp = getCostPrice(price, dp);
+  const { token } = useContext(AuthContext);
   const {
     data: { wishlist },
     dataDispatch,
   } = useContext(DataContext);
-  const isInWishlist = findItemIn(wishlist,item)
-  const navigate = useNavigate()
+  const isInWishlist = findItemIn(wishlist, item);
+  const navigate = useNavigate();
 
+  const removeCoupon = () => {
+    dataDispatch({
+      type: "SET_COUPON_VALUE",
+      payload: 0,
+    });
+  };
   const handleRemoveFromCart = (bool) => {
-    removeFromCart(item._id,token,dataDispatch)
+    removeFromCart(item._id, token, dataDispatch);
+    removeCoupon();
     if (!bool) {
       ToastHandler("info", "Removed from Cart :(");
     }
   };
-  
+
   const handleAddToWishlist = () => {
     handleRemoveFromCart(true);
-    addToWishlist(item,token,dataDispatch)
+    addToWishlist(item, token, dataDispatch);
+    removeCoupon();
     ToastHandler("info", "Moved to favourites ;p");
   };
 
   const handleUpdateCart = (incOrDec) => {
-    updateQtyCart(item._id,token,incOrDec,dataDispatch)
-
+    removeCoupon();
+    updateQtyCart(item._id, token, incOrDec, dataDispatch);
   };
-  
+
   return (
     <div className="cart-card-main flex-row">
       <section className="cart-img-cont">
@@ -74,7 +82,10 @@ const CartProductCard = ({ item }) => {
       </section>
       <section className="cart-quant flex-col">
         <p className="cart-quant-btns flex-row">
-          <button onClick={() => handleUpdateCart("decrement")} disabled={qty === 1}>
+          <button
+            onClick={() => handleUpdateCart("decrement")}
+            disabled={qty === 1}
+          >
             -
           </button>
           <span>{qty}</span>

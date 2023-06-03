@@ -12,6 +12,7 @@ import Mockman from "mockman-js"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import WrongRoutePage from "./pages/WrongRoutePage";
+import { IsAuthDone } from "./components/IsAuthDone";
 function App() {
   return (
     <div className="App">
@@ -23,10 +24,13 @@ function App() {
         <Route path="/login" element = {<Login />} />
         <Route path="/productlisting" element = {<ProductListing/>} />
         <Route path="/productdetails/:productID" element = {<ProductDetails />} />
-        <Route path="/cart" element = {<Cart />} />
-        <Route path="/wishlist" element = {<Wishlist />} />
         <Route path="/mm" element = {<Mockman/>} />
         <Route path="*" element={<WrongRoutePage />} /> 
+        
+        <Route element={<IsAuthDone/>}>
+          <Route path="/cart" element = {<Cart />} />
+          <Route path="/wishlist" element = {<Wishlist />} />
+        </Route>
       </Routes>
       <Footer/>
     </div>

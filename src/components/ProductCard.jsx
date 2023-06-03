@@ -27,6 +27,11 @@ const ProductCard = ({ item, wish }) => {
   const { token } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const handleRedirect = () => {
+    navigate("/login")
+    ToastHandler("warn", "Please login to continue");
+  }
+
   const handleAddToCart = () => {
     addToCart(item, token, dataDispatch);
     ToastHandler("success", "Added to cart!");
@@ -41,6 +46,7 @@ const ProductCard = ({ item, wish }) => {
       ToastHandler("success", "Added to favorites!");
     }
   };
+
 
   const isInCart = findItemIn(cart,item)
   const isInWishlist = findItemIn(wishlist,item)
@@ -68,7 +74,7 @@ const ProductCard = ({ item, wish }) => {
         className={`btn add-to-cart ${isInCart ? "bg-dark" : ""} ${
           wish ? "w-80" : ""
         }`}
-        onClick={isInCart ? () => navigate("/cart") : () => handleAddToCart()}
+        onClick={!token ? ()=> handleRedirect() : isInCart ? () => navigate("/cart") : () => handleAddToCart()}
       >
         {isInCart ? "Go" : wish ? "Move" : "Add"} to Cart
       </button>
@@ -77,7 +83,7 @@ const ProductCard = ({ item, wish }) => {
           className={`btn add-to-wish ${
             isInWishlist ? "color-orange bg-dark" : ""
           }`}
-          onClick={() => handleAddToWishlist()}
+          onClick={!token ? ()=>handleRedirect()  : () => handleAddToWishlist()}
         >
           &#9829;
         </button>
