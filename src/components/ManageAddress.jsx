@@ -13,6 +13,9 @@ const ManageAddress = () => {
 address here
 <button onClick={()=>handleCloseAddress()} >Close</button>
 {/* {data} */}
+{
+    "address here"
+}
     </section>
 }
 

@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import "./components.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; 
 import { Carousel } from "react-responsive-carousel";
 import { DataContext } from "../contexts/DataContext";
-import "./components.css";
-import { useNavigate } from "react-router-dom";
 
 const CarouselComponent = () => {
   const navigate = useNavigate()
