@@ -11,19 +11,39 @@ import AddressForm from "../components/AddressForm";
 const ManageAddress = () => {
   const [editAddress,setEditAddress] = useState("")
   const [onEdit,setOnEdit] = useState(false)
+  const [displayAddress,setDisplayAddress] = useState(false)
   const {
-    data: { address },
+    data: { address },dataDispatch
   } = useContext(DataContext);
   const navigate = useNavigate();
   const handleBack = () => {
     navigate("/login");
   };
   const handleAddNewAddress = () => {
-    console.log("add")
+    setOnEdit(false)
+    setDisplayAddress(true)
+    setEditAddress(null)
+  }
+  const handleSave = (toAddAddress,isSave=false) => {
+    // if(toAddAddress){
+    // if(true){
+    console.log(toAddAddress,"in main",isSave,"save?");
+    
+    isSave &&  dataDispatch({
+        type:"SET_ADDRESS",
+        payload:{...toAddAddress,_id:3}
+      })
+    // }
   }
   const handleEditAddress = (editAdd) => {
     setEditAddress(editAdd)
     setOnEdit(true)
+  }
+  const handleDeleteAddress = (delAdd) => {
+    dataDispatch({
+      type:"DELETE_ADDRESS",
+      payload:delAdd
+    })
   }
   return (
     <div className="address-page-main ">
@@ -40,7 +60,7 @@ const ManageAddress = () => {
               {item?.country}, PIN {item?.pincode}
             </p>
             <p className="color-green">Mob. {item?.mobile}</p>
-            <button className="btn btn-delete-address">Delete</button>
+            <button className="btn btn-delete-address" onClick={()=>handleDeleteAddress(item)}>Delete</button>
             <button className="btn btn-edit-address" onClick={()=>handleEditAddress(item)}>Edit</button>
           </p>
         ))}
@@ -48,12 +68,15 @@ const ManageAddress = () => {
       <section className="address-right">
         <h2>New Address? <span className="underline-text accent" onClick={()=>handleAddNewAddress()}>Add &#43;</span></h2>
 
-          <AddressForm address={editAddress} onSave={()=>handleAddNewAddress()} onEdit={onEdit}/>
+{
+  displayAddress &&
+          <AddressForm address={editAddress} onSave={(data,isSave)=>handleSave(data,isSave)} onEdit={onEdit}/>
+}
         
-      <button className="btn" onClick={() => handleBack()}>
+      {/* <button className="btn" onClick={() => handleBack()}>
         Back
       </button>
-      <button className="btn">Done</button>
+      <button className="btn">Done</button> */}
       </section>
     </div>
   );

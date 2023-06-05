@@ -42,6 +42,11 @@ export function dataReducer(state, action) {
         ...state,
         address: [...state.address, action.payload],
       };
+    case "DELETE_ADDRESS":
+      return {
+        ...state,
+        address: state.address.filter(({_id})=> _id!==action.payload._id) ,
+      };
     case "SET_DEFAULT_ADDRESS":
       return {
         ...state,

@@ -384,3 +384,21 @@
   height: 50px;
   padding: 0 1rem;
 }
+
+/* address form */
+.form-fields{
+  min-width: 45%
+}
+.btn-add-container{
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.btn-address-add{
+  min-width: 12%;
+  /* margin: 0 auto; */
+  height: 30px;
+  text-align: center;
+}
