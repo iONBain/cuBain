@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import ToastHandler from "../utils";
 import UserProfile from "../components/UserProfile";
@@ -12,6 +12,15 @@ const Login = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
+  const handleReset = () => {
+    if (emailRef.current) {
+      emailRef.current.value = ""
+    }
+    if (passwordRef.current) {
+      passwordRef.current.value = ""
+    }
+  };
+
   const handleLogin = async () => {
     try {
       if (emailRef.current.value === "" || passwordRef.current.value === "") {
@@ -24,6 +33,7 @@ const Login = () => {
         await loginUser(bodyLogin);
         if (localStorage.getItem("login") === null) {
           ToastHandler("error", "Invalid credentials");
+          handleReset();
         } else {
           setToken(localStorage.getItem("login"));
           dataDispatch({
@@ -69,6 +79,8 @@ const Login = () => {
     }
   };
 
+  // useEffect(()=>{handleReset()},[btnState])
+
   return (
     <div className="login-main">
       {token ? (
@@ -78,13 +90,19 @@ const Login = () => {
           {/* <>   */}
           <button
             className={`btn-login ${!btnState ? "btn-active" : ""}`}
-            onClick={() => setBtnState(false)}
+            onClick={() => {
+              setBtnState(false);
+              handleReset();
+            }}
           >
             Log In
           </button>
           <button
             className={`btn-signin ${btnState ? "btn-active" : ""}`}
-            onClick={() => setBtnState(true)}
+            onClick={() => {
+              setBtnState(true);
+              handleReset();
+            }}
           >
             Sign Up
           </button>

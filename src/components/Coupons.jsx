@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
+import ToastHandler from "../utils";
 
 const Coupons = ({ finPrice }) => {
   const {
@@ -14,6 +15,7 @@ const Coupons = ({ finPrice }) => {
   };
   const handleApplyCoupon = () => {
     handleHideCoupon();
+    ToastHandler("success","Applied coupon successfully :)")
   };
   const handleSetCouponValue = (e) => {
     dataDispatch({

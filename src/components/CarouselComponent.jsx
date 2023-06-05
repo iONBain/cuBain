@@ -33,9 +33,9 @@ const CarouselComponent = ({ productsToShow, isPageSummary }) => {
               <h1>{i.name}</h1>
               {!isPageSummary && (
                 <>
-                  <p className="rating cen-top">{i.rating} &#9733;</p>
+                  <p className="rating cara-top">{i.rating} &#9733;</p>
                   <p className="recommended">Best Seller</p>
-                  <p className="discount cen-top">
+                  <p className="discount cara-top">
                     {i.discountPercentage}% OFF{" "}
                   </p>
                 </>

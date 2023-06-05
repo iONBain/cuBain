@@ -73,12 +73,6 @@ const ProductDetails = () => {
 
   return (
     <div className="product-details-main">
-      <button
-        className="details-back btn"
-        onClick={() => navigate("/productlisting")}
-      >
-        Back to shopping
-      </button>
       <section className="details-img">
         <img src={imgLink} alt="" className="details-img-image" />
       </section>
@@ -109,17 +103,25 @@ const ProductDetails = () => {
             ? () => navigate("/cart")
             : () => addToCartHandler()
         }
-        // onClick={isInCart ? () => navigate("/cart") : () => addToCartHandler()}
       >
         {isInCart ? "Go" : "Add"} to Cart
       </button>
       <button
-        className={`btn btn-details-wish ${isInWishlist && "bg-less-dark"}`}
+        // className={`btn btn-details-wish ${isInWishlist && "bg-less-dark"}`}
+        className={`btn btn-details-wish ${
+          isInWishlist ? "color-orange bg-dark" : ""
+        }`}
         onClick={
           !token ? () => handleRedirect() : () => addToFavs()
         }
       >
-        {isInWishlist ? "Remove from" : "Add to"} Favourites
+         &#9829;
+      </button>
+       <button
+        className="details-back btn"
+        onClick={() => navigate("/productlisting")}
+      >
+        Back to shopping
       </button>
     </div>
   );

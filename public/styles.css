@@ -175,6 +175,9 @@ select{
     letter-spacing: 4px;
     font-size: 1rem;
 }
+.f-n{
+    font-size: 1.2rem;
+}
 .f-l{
     font-size: 1.6rem;
 }

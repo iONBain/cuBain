@@ -17,7 +17,7 @@ const Home = () => {
           <h2 className="cursive f-xxl">HoLa Gracious Amigos</h2>
           <p className="normal-font f-xl">Welcome to cUBain !</p>
 
-          <section>
+          {/* <section>
             <p className="m-w-50">
               The number of possible combinations of a Rubik's Cube is
               staggering. It has approximately 43 quintillion
@@ -26,13 +26,13 @@ const Home = () => {
             <h3>
               And that too for a <span className="cursive"> REGULAR 3x3 !</span>{" "}
             </h3>
-          </section>
+          </section> */}
 
           <p className="color-white">
             Check out our favourite cubes {">>>>>>>>>>>>"}
           </p>
         </section>
-        <section className="hero-right ">
+        <section className="hero-right">
           <CarouselComponent productsToShow={recommendedProducts} />
         </section>
       </section>

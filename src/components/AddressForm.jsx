@@ -76,12 +76,12 @@ const AddressForm = ({ address: add, onSave, onEdit }) => {
   ];
 
   return (
-    <div className="mar-up-10">
+    <div className="address-main-form">
       <form
         ref={formRef}
         // defaultValue={formRef.current.value}
         onSubmit={(e) => handleSubmit(e)}
-        className="flex-col gap-10 flex-center mar-up-10"
+        className="flex-col gap-10 flex-center"
       >
         {/* mapper to loop through all fields of the form */}
         {formFields.map((field) => (

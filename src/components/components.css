@@ -119,12 +119,14 @@
 /* carousel */
 .carousel{
   text-align: left;
+  background-color: white;
+  border-radius: 1rem;
 }
 .carousel .slider-wrapper{
   /* width: 50%; */
+  /* max-width: 80%; */
   text-align: center;
   height: 400px;
-  width: 100%;
 }
 .carousel-main{
   min-height: 100%;
@@ -387,7 +389,7 @@
 
 /* address form */
 .form-fields{
-  min-width: 45%
+  min-width: 100%
 }
 .btn-add-container{
   width: 100%;
@@ -397,8 +399,19 @@
   margin-top: 2rem;
 }
 .btn-address-add{
-  min-width: 12%;
+  min-width: 45%;
   /* margin: 0 auto; */
   height: 30px;
   text-align: center;
+}
+.address-main-form{
+  border: 2px solid var(--shadowLightBlue);
+  max-width: 50%;
+  margin: 2rem auto;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.2s ease-in;
+}
+.address-main-form:hover{
+  box-shadow: 4px 12px 10px rgba(45, 156, 246, 0.153);
 }

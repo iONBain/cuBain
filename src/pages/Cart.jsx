@@ -41,7 +41,7 @@ const Cart = () => {
       <section className="cart-display flex-col">
         <h2 className="cart-display-heading">
                     <span className="cursive accent">{cart.length} cubes </span>
-                    in your Cart :0
+                    in your Cart :0  <span onClick={()=>navigate("/productlisting")} className="accent underline-text f-n "> Buy More  </span>
                     </h2>
         <section className="cart-display-items mar-up-10 pad-r-10">
 

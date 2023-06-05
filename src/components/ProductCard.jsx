@@ -70,9 +70,7 @@ const ProductCard = ({ item, wish }) => {
       </Link>
 
       <button
-        className={`btn add-to-cart ${isInCart ? "bg-dark" : ""} ${
-          wish ? "w-80" : ""
-        }`}
+        className={`btn add-to-cart ${isInCart ? "bg-dark" : ""}`}
         onClick={
           !token
             ? () => handleRedirect()
@@ -83,7 +81,7 @@ const ProductCard = ({ item, wish }) => {
       >
         {isInCart ? "Go" : wish ? "Move" : "Add"} to Cart
       </button>
-      {!wish && (
+      {/* {!wish && ( */}
         <button
           className={`btn add-to-wish ${
             isInWishlist ? "color-orange bg-dark" : ""
@@ -94,7 +92,7 @@ const ProductCard = ({ item, wish }) => {
         >
           &#9829;
         </button>
-      )}
+      {/* )} */}
     </div>
   );
 };
