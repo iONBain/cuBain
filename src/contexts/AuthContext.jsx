@@ -1,10 +1,14 @@
 import { loginService } from "../services/login";
 import { signUpService } from "../services/signup";
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import ToastHandler from "../utils";
+import { DataContext } from "./DataContext";
+
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-
+  const {dataDispatch} = useContext(DataContext)
   const LSToken = JSON.parse(localStorage.getItem("login"));
   const [token, setToken] = useState(LSToken?.token);
   const LSUser = JSON.parse(localStorage.getItem("user"));
@@ -21,31 +25,25 @@ export const AuthProvider = ({ children }) => {
         setToken(encodedToken);
         localStorage.setItem("user", JSON.stringify({ user: createdUser }));
         setUser(createdUser);
-        // dataDispatch({
-        //   type: "INITIALIZE_ADDRESS",
-        //   payload: foundUser.address,
-        // });
     }}
     catch(e) {
       console.error(e)
     }
   }
+
   const loginUser = async ({email, password}) => {
         if (email && password !== "") {
           try {
             const {
-              data: { foundUser, encodedToken },
+              data: {  encodedToken,foundUser },
               status,
             } = await loginService({email, password});
             if (status === 200) {
+              ToastHandler("success", "Successfully logged in :)");
               localStorage.setItem("login", JSON.stringify({ token: encodedToken }));
               setToken(encodedToken);
               localStorage.setItem("user", JSON.stringify({ user: foundUser }));
               setUser(foundUser);
-              // dataDispatch({
-              //   type: ACTION_TYPE.INITIALIZE_ADDRESS,
-              //   payload: foundUser.address,
-              // });
             }
           } catch (error) {
             console.log("Error occured in logging in user", error);
@@ -53,65 +51,10 @@ export const AuthProvider = ({ children }) => {
         }
       };
      
-  useEffect(() => {
-    // console.log(token,"hey token")
-    if (token) {
-      // dataDispatch({
-      //   type: ACTION_TYPE.INITIALIZE_ADDRESS,
-      //   payload: user.address,
-      // });
-    }
-  }, [token]);
+ 
   return (
     <AuthContext.Provider value={{ token, setToken, LSUser,loginUser, signUpUser, user, setUser }}>
       {children}
     </AuthContext.Provider>
   );
 }
-
-// import { ACTION_TYPE } from "../../utils";
-// import { useData } from "../data/dataContext";
-
-
-// const AuthProvider = ({ children }) => {
-
-//   const loginUser = async (email, password) => {
-//     if (email && password !== "") {
-//       try {
-//         const {
-//           data: { foundUser, encodedToken },
-//           status,
-//         } = await loginService(email, password);
-//         if (status === 200) {
-//           localStorage.setItem("login", JSON.stringify({ token: encodedToken }));
-//           setToken(encodedToken);
-//           localStorage.setItem("user", JSON.stringify({ user: foundUser }));
-//           setUser(foundUser);
-//           dataDispatch({
-//             type: ACTION_TYPE.INITIALIZE_ADDRESS,
-//             payload: foundUser.address,
-//           });
-//         }
-//       } catch (error) {
-//         console.log("Error in login user", error);
-//       }
-//     }
-//   };
-
- 
-//   useEffect(() => {
-//     if (token) {
-//       dataDispatch({
-//         type: ACTION_TYPE.INITIALIZE_ADDRESS,
-//         payload: user.address,
-//       });
-//     }
-//   }, []);
-
-//   return (
-//     <AuthContext.Provider value={{ token, setToken, loginUser, signUpUser, user, setUser }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-

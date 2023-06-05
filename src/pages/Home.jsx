@@ -1,8 +1,14 @@
+import { useContext } from "react";
 import CarouselComponent from "../components/CarouselComponent";
 import CategoriesSel from "../components/CategoriesSel";
 import Loader from "./Loader";
 import "./Pages.css";
+import { DataContext } from "../contexts/DataContext";
 const Home = () => {
+   const {data:{products}} = useContext(DataContext)
+  const recommendedProducts = products
+    ? products.filter(({ isRecommended }) => isRecommended)
+    : [];
   return (
     <div className="home-main">
       <Loader home />
@@ -27,7 +33,7 @@ const Home = () => {
           </p>
         </section>
         <section className="hero-right ">
-          <CarouselComponent />
+          <CarouselComponent productsToShow={recommendedProducts} />
         </section>
       </section>
       <section className="category-wrapper">

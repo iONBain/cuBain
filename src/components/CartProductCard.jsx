@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
 import ToastHandler, { getCostPrice } from "../utils";
 import { useNavigate } from "react-router-dom";
-import { removeFromCart, updateQtyCart } from "../utils/cartAPIs";
+import { removeFromCart, updateQtyCart } from "../services/cartAPIs";
 import { AuthContext } from "../contexts/AuthContext";
-import { addToWishlist } from "../utils/wishAPIs";
-import { findItemIn } from "../utils/findItem";
+import { addToWishlist } from "../services/wishAPIs";
+import { findItemIn } from "../services/findItem";
 
 const CartProductCard = ({ item }) => {
   const { name, price, discountPercentage: dp, imgLink, shapeType, qty } = item;

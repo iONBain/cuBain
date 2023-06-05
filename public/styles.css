@@ -151,6 +151,13 @@ select{
     pointer-events: none;
     background-color: grey;
 }
+.border-top-and-bot{
+    border: 2px solid var(--lighterBlue);
+    padding: 2px;
+    border-right: 0;
+    border-left: 0;
+
+}
 .accent{
     color: var(--lighterBlue);
 }
@@ -208,6 +215,9 @@ select{
 .hover-mouse{
     cursor: pointer;
 }
+.center-text{
+    text-align: center;
+}
 .pad-r-10{
     padding-right: 1.5rem;
 }
@@ -218,4 +228,8 @@ select{
     max-width: 80%;
     color: var(--shadowLightBlue);
     line-height:1.8rem
+}
+.underline-text{
+    text-decoration: underline;
+    cursor: pointer;
 }

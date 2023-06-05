@@ -1,10 +1,11 @@
 import axios from "axios";
 
-export const signUpService = (email, password, firstName, lastName) => {
+export const signUpService = (body) => {
+  const {email, password, firstName, lastName} = body
   return axios.post("api/auth/signup", {
     email: email,
     password: password,
-    firstName: firstName ? "f" : "d" ,
+    firstName: firstName,
     lastName: lastName,
   });
 };

@@ -43,7 +43,7 @@ export const DataProvider = ({ children }) => {
     state.search && navigate("/productlisting")
   }
   ,[state.search,navigate])
-  // useEffect(() => console.log(state, "DataContext"), [state]);
+  useEffect(() => console.log(state, "DataContext"), [state]);
   useEffect(() => {getData()}, []);
   
   

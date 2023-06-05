@@ -1,161 +1,67 @@
-const handleSubmit = () => {
-    var options = {
-      key: "rzp_test_gZUyFL8iSOmzRO",
-      key_secret: "NhxYofCc6J74MYtxV4N736G8",
-      amount: totalAmount * 100,
-      currency: "INR",
-      name: "SpeedyBuy",
-      description: "for testing purpose",
-      handler: function (response) {
-        localStorage.setItem("payment_key",response.razorpay_payment_id)
-        navigate("/orderPlaced")
-        // alert(response.razorpay_payment_id);
-      },
-      prefill: {
-        name: "Arjun",
-        email: "asr9320003120@gmail.com",
-        contact: "9320003120",
-      },
-      notes: {
-        address: "Razorpay Corporate office",
-      },
-      theme: {
-        color: "#2e2e2e",
-      },
-    };
-    var pay = new window.Razorpay(options);
-    pay.open();
-    // console.log( "keyyyyyy",options.key)
-  };
+import { useContext } from "react"
+import { DataContext } from "../contexts/DataContext"
+import { getFinPrice } from "../utils"
+import { useNavigate } from "react-router-dom"
+import AddressCard from "../components/AddressCard"
 
+const Checkout = () => {
+  
+  const {data:{address,cart}} = useContext(DataContext)
+  const finPrice = getFinPrice(cart)
 
- const handlePlaceorder=()=>{
-  if(selectedAddress){
-    handleSubmit()
-    orderDispatch({type:"Selected_Address",payload:selectedAddress})
-    orderDispatch({type:"ORDER_PLACED_ITEMS",payload:cart})
-    cartItemsId?.forEach((_id)=>RemoveFromCart(_id, dispatch,token))
+  const {data:{couponValue},dataDispatch} = useContext(DataContext)
 
-  }else{
-    navigate("/profile")
-    warning("Please Add Your Address")
+  const couponValueRs = Math.floor((finPrice.finSP + cart.length*10)* couponValue * 0.01,1 )
+  const discountValueRs = finPrice.finCP - finPrice.finSP
+  const packingValueRs = cart.length*10
+
+  const navigate = useNavigate()
+  const handleBack = () => {
+    navigate("/cart")
   }
- }
 
+  return (
+    <div className="checkout-main flex-row flex-grow mar-up-10 gap-10">
+      <section className="checkout-address flex-col">
+        <h2 className="cursive accent">Your Addresses</h2>
 
- return (
-    <div className="checkout-main-container">
-      <div>
-        {address?.map((addressData, i) => {
-          const {
-            id,
-            name,
-            street,
-            city,
-            state,
-            country,
-            postalCode,
-            MobileNum,
-          } = addressData;
-          return (
-            <div className="checkout-mainAddress-container">
+        {
+          address.map(item => (
+            <AddressCard item = {item} />
+            ))
+          }
+      </section>
 
-       
-            <div className="checkout-innerAddress-container" key={id}>
-              <div
-                className="checkout-address cursor-pointer"
-                key={id}
-                onClick={() => handleAddress(addressData)}
-              >
-                <input
-                  type="radio"
-                  name="oneAddress"
-                  onChange={() => handleAddress(addressData)}
-                  checked={selectedAddress.id === id}
-                />{" "}
-                <span className="font-bold sm-margin-bottom"> {name}</span>
-                <p>
-                  {" "}
-                  {street},{city},{postalCode}
-                </p>
-                <p>{state}</p>
-                <p>{country}</p>
-                {/* <p></p> */}
-                <p>Phone Number: {MobileNum}</p>{" "}
-              </div>
-            </div>
-            </div>
-          );
-        })}
-      </div>
-<div className="checkout-bill-container">
+      {/* Checkout summary section */}
+      <section className="flex-col checkout-summary">
+        <h2>Checkout Summary</h2>
+        <section className="checkout-summary-details flex-col">
+          <h3 className="center-text accent border-top-and-bot">Cubes in Cart </h3>
+          <h4 className="space-bw-row ">Cube <span>Qty</span> </h4>
+          {cart && cart.map(({name,qty}) => (
+            <>
+            <h5 className="space-bw-row">{name} <span>{qty}</span>  </h5>
+            </>
+          ))}
+          <h3 className="center-text accent border-top-and-bot">{" "} <span>Price Details</span> </h3>
+          
+          <h5 className="space-bw-row">Price <span>Rs. {finPrice.finCP}</span>  </h5>
+          <h5 className="space-bw-row color-orange">Discount <span>- Rs. {discountValueRs}</span>  </h5>
+          <h5 className="space-bw-row">Delivery <span>Rs. {packingValueRs}</span>  </h5>
+          <h5 className="space-bw-row color-green">Coupon <span>- Rs. {couponValueRs}</span>  </h5>
+          <h5 className="space-bw-row accent">Final Amount <span>Rs. {finPrice.finSP + packingValueRs - couponValueRs}</span>  </h5>
+          <h3 className="center-text accent border-top-and-bot">{" "} <span>Delivery Address </span> </h3>
 
+          
+          <p className="btns-checkout-con">
 
-      <div className="checkout-inner-container">
-        <div className="checkout-header-box text-center padding-top-bottom-5 ">
-          <h2>ORDER DETAILS</h2>
-        </div>
-        <hr />
-        <div className="flex justify-between text-center padding-bottom-2">
-          <div className="font-bold">Item </div>
-          <div className="font-bold">QTY</div>
-        </div>
-        {OrderPlacedItems?.map(({ itemName, qty, _id }) => (
-          <div
-            className="flex justify-between text-center padding-bottom-2"
-            key={_id}
-          >
-            <p>{itemName}</p>
-            <div>{qty}</div>
-          </div>
-        ))}
-        <div className="text-center border-bottom border-top padding-top-bottom-5 margin-bottom-1">
-          <h2>PRICE DETAILS</h2>
-        </div>
-
-        <div className="flex justify-between padding-bottom-2 ">
-          <div>Price({totalItems} items)</div>
-          <div>₹{priceDetails}</div>
-        </div>
-        <div className="flex justify-between padding-bottom-2">
-          <div>Discount</div>
-          <div>-₹{discount}</div>
-        </div>
-        <div className="flex justify-between padding-bottom-2">
-          <div>Delivery Charges</div>
-          <div>FREE</div>
-        </div>
-        <div className="flex justify-between padding-bottom-2 ">
-          <div>Coupon Discount</div>
-          <div>₹{couponDiscount}</div>
-        </div>
-        <div className="flex justify-between margin-bottom-1">
-          <h4>Total Amount</h4>
-          <h4>₹{(totalAmount)?.toFixed(2)}</h4>
-        </div>
-        <div className="text-center border-bottom border-top padding-top-bottom-5 margin-bottom-1">
-          <h3>DELIVER TO</h3>
-        </div>
-      {selectedAddress && <div className="padding-bottom-5">
-         <div className="margin-bottom-1">
-            {" "}
-            <span className="font-bold sm-margin-bottom"> {selectedAddress.name}</span>
-            <p>
-              {" "}
-              {selectedAddress.street},{selectedAddress.city}  {selectedAddress.postalCode},
-            </p>
-            <p>{selectedAddress.state}, </p>
-            <p> {selectedAddress.country}</p>
-            <p>Phone Number :{selectedAddress.MobileNum}</p>{" "}
-          </div>
-        </div>}
-        <div onClick={handlePlaceorder}>
-          <button className="place-order-button cursor-pointer">
-            Place Order
-          </button>
-        </div>
-      </div>
-      </div>
+          <button className="btn btn-cart" onClick={()=>handleBack()}>Back</button>
+          <button className="btn btn-cart">Order Now</button>
+          </p>
+        </section>
+      </section>
     </div>
-  );
-};
+  )
+}
+
+export default Checkout

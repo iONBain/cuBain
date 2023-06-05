@@ -13,6 +13,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import WrongRoutePage from "./pages/WrongRoutePage";
 import { IsAuthDone } from "./components/IsAuthDone";
+import ManageAddress from "./pages/ManageAddress";
+import Checkout from "./pages/Checkout";
 function App() {
   return (
     <div className="App">
@@ -30,6 +32,8 @@ function App() {
         <Route element={<IsAuthDone/>}>
           <Route path="/cart" element = {<Cart />} />
           <Route path="/wishlist" element = {<Wishlist />} />
+          <Route path="/checkout" element = {<Checkout />} /> 
+          <Route path="/manage_address" element = {<ManageAddress />} />
         </Route>
       </Routes>
       <Footer/>

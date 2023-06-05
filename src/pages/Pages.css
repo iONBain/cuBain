@@ -162,8 +162,12 @@
     color: var(--shadowLightBlue);
     border-radius: 2rem;
     padding: 2rem 5rem;
+    gap: 2rem;
     transition: all 0.3s ease-in;
-    justify-content: space-around;
+    /* justify-content: space-between; */
+}
+.btns-user-profile{
+    margin-top: auto;
 }
 
 .login-box{
@@ -203,6 +207,7 @@
 .btn-active{
     background-color: var(--shadowLightBlue);
     color:var(--lighterBlue);
+    text-decoration: underline;
 }
 .btn-login:hover, .btn-signin:hover{
     color: var(--darkBlue);
@@ -254,6 +259,39 @@
 .btn-submit{
     grid-area: submit;
 }
+
+/* address */
+.address-page-main{
+    margin: 1rem;
+    gap: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.address-list-left{
+    padding: 1rem;
+    overflow-y: scroll;
+    align-items: center;
+    justify-content: center;
+    /* flex-grow: 1; */
+    width: 50%;
+}
+.address-right{
+    padding: 1rem;
+    width: 50%;
+}
+.address-card-item {
+    border: 2px solid var(--shadowLightBlue);
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 10px;
+    /* max-width: 50%; */
+    position: relative;
+}
+
 
 /* cart */
 .cart-main{
@@ -317,7 +355,72 @@
     font-size: 2.5rem;
 }
 
+/* checkout */
+.checkout-main{
+    overflow: hidden;
+}
+.checkout-address{
+    justify-content: flex-start;
+    /* padding: 1rem; */
+    align-items: top;
+    width: 50%;
+    overflow-y: scroll;
+    margin: 1rem;
+}
+.checkout-summary{
+    margin: 1rem;
+    width: 50%;
+    /* padding: 1rem; */
+    gap: 1.5rem;
+    overflow-y: scroll;
+}
+.checkout-summary h2 {
+    text-align: center;
+}
+.space-bw-row {
+    display: flex;
+    justify-content: space-between;
 
+}
+.checkout-summary-details{
+    margin: 0 auto;
+    border: 2px solid var(--shadowLightBlue);
+    border-radius: 10px;
+    width: 50%;
+    padding: 1rem;
+    gap: 10px;
+    transition: all 0.2s ease-in;
+}
+.checkout-summary-details:hover{
+    box-shadow: 4px 12px 10px rgba(45, 156, 246, 0.153);
+}
+.checkout-summary-details p {
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.btns-checkout-con{
+    margin-top: 1rem;
+}
+
+
+
+.btn-delete-address{
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    min-width: 50px;
+}
+.btn-edit-address{
+    position: absolute;
+    bottom: 1rem;
+    right: 5rem;
+    min-width: 50px;
+}
+
+
+/* loader */
 .loader-main{
     flex-grow: 1;
     display: flex;

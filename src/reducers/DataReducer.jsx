@@ -1,3 +1,5 @@
+const defaultAddress = [{ id: 1, name:"Bhaskar A", street:"Nehru Colony", city:"Bhilai", state:"Chhattisgarh", country:"India", pincode:"490006", mobile:"9993330000" },
+]
 export const initialState = {
   products: [],
   category: [],
@@ -12,10 +14,10 @@ export const initialState = {
   skills: { Advanced: false, Beginner: false, Intermediate: false },
   cubeType: { cube: false, mod: false, pyramid: false, special: false },
   rating: "",
-  loader:false,
-  showCoupon:false,
-  couponValue:0,
-  showAddress:false
+  loader: false,
+  showCoupon: false,
+  couponValue: 0,
+  showAddress: false,
 };
 
 export function dataReducer(state, action) {
@@ -35,10 +37,15 @@ export function dataReducer(state, action) {
           ...product,
         })),
       };
-    case "INITIALIZE_ADDRESS":
+    case "SET_ADDRESS":
       return {
         ...state,
-        address: action.payload,
+        address: [...state.address, action.payload],
+      };
+    case "SET_DEFAULT_ADDRESS":
+      return {
+        ...state,
+        address: defaultAddress,
       };
     case "PRICE_RANGE":
       return {
@@ -90,24 +97,19 @@ export function dataReducer(state, action) {
         },
       };
     case "UPDATE_WISHLIST":
-      return{
+      return {
         ...state,
-        wishlist : action.payload
-      }
+        wishlist: action.payload,
+      };
     case "UPDATE_CART":
-      return{
+      return {
         ...state,
-        cart : action.payload
-        }
+        cart: action.payload,
+      };
     case "CLEAR_CART":
       return {
         ...state,
         cart: [],
-      };
-    case "ADDRESS":
-      return {
-        ...state,
-        address: [...action.payload],
       };
     case "LOG_OUT":
       return {
@@ -119,23 +121,23 @@ export function dataReducer(state, action) {
     case "SET_SHOW_ADDRESS":
       return {
         ...state,
-        showAddress:action.payload ,
+        showAddress: action.payload,
       };
     case "SET_COUPON":
       return {
         ...state,
-        showCoupon:action.payload ,
+        showCoupon: action.payload,
       };
     case "SET_COUPON_VALUE":
       return {
         ...state,
-        couponValue:action.payload ,
+        couponValue: action.payload,
       };
-      case "SET_LOADER":
-        return {
-          ...state,
-          loader: action.payload,
-        };
+    case "SET_LOADER":
+      return {
+        ...state,
+        loader: action.payload,
+      };
     case "CLEAR_FILTER":
       return {
         ...state,

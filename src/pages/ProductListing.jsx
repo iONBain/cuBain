@@ -28,6 +28,7 @@ const ProductListing = () => {
       : sortName && sortOrder === "Ascending"
       ? [...products].sort((a, b) => a[sortName] - b[sortName])
       : products;
+      
   const filteredGal = sortedProducts
     .filter(({ price }) => price <= "" + priceRange)
     .filter(({ rating: rVal }) => rVal >= "" + rating)

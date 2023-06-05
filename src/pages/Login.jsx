@@ -1,90 +1,128 @@
 import { useContext, useRef, useState } from "react";
-import "./Pages.css";
-import { loginService } from "../services/login";
-import { signUpService } from "../services/signup";
 import { AuthContext } from "../contexts/AuthContext";
+import ToastHandler from "../utils";
+import UserProfile from "../components/UserProfile";
+import "./Pages.css";
 import { DataContext } from "../contexts/DataContext";
-import ManageAddress from "../components/ManageAddress";
 
 const Login = () => {
-  const [btnState,setBtnState] = useState(false)
-  const {token,setToken,loginUser,foundUser,LSUser} = useContext(AuthContext)
-  const emailRef = useRef()
-  const passwordRef = useRef()
-  const {data:{showAddress} ,dataDispatch} = useContext(DataContext)
-  // console.log(LSUser.user?.firstName,"lsuser")
+  const [btnState, setBtnState] = useState(false);
+  const { token, setToken, loginUser, signUpUser } = useContext(AuthContext);
+  const { dataDispatch } = useContext(DataContext);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
 
-  const handleLogin = async ()=> {
-    const bodyLogin = {email:emailRef.current.value,password:passwordRef.current.value}
-    const {status,data: {encodedToken,foundUser}} = await loginService(bodyLogin)
-    console.log( status,encodedToken,foundUser)
-  }
-  const handleLogOut = async ()=> {
-    console.log(foundUser)
-    setToken("")
-    dataDispatch({
-      type: "LOG_OUT",
-    })
-    localStorage.removeItem("login")
-    localStorage.removeItem("user")
-  }
-  
+  const handleLogin = async () => {
+    try {
+      if (emailRef.current.value === "" || passwordRef.current.value === "") {
+        ToastHandler("warn", "Please enter details to Log In");
+      } else {
+        const bodyLogin = {
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        };
+        await loginUser(bodyLogin);
+        if (localStorage.getItem("login") === null) {
+          ToastHandler("error", "Invalid credentials");
+        } else {
+          setToken(localStorage.getItem("login"));
+          dataDispatch({
+            type: "SET_DEFAULT_ADDRESS",
+          });
+        }
+      }
+    } catch (e) {
+      console.error(e, "sad");
+    }
+  };
   const handleTestUser = async () => {
-    try{
-      const bodyLoginTest = {email:"programmer@neog.com",password:"neoGrammer"}
-      const res = await loginUser(bodyLoginTest)
-      setToken(localStorage.getItem("login"))
-      console.log(await res, "ress")
+    try {
+      const bodyLoginTest = {
+        email: "programmer@neog.com",
+        password: "neoGrammer",
+      };
+      await loginUser(bodyLoginTest);
+      setToken(localStorage.getItem("login"));
+      dataDispatch({
+        type: "SET_DEFAULT_ADDRESS",
+      });
+    } catch (e) {
+      console.error(e);
     }
-    catch(e) {
-      console.error(e)
+  };
+  const handleSignin = async () => {
+    try {
+      if (emailRef.current.value === "" || passwordRef.current.value === "") {
+        ToastHandler("warn", "Please enter details to Sign In");
+      } else {
+        const bodyLogin = {
+          firstName: "",
+          lastName: "",
+          email: emailRef.current.value,
+          password: passwordRef.current.value,
+        };
+        await signUpUser(bodyLogin);
+        setToken(localStorage.getItem("signup"));
+      }
+    } catch (e) {
+      console.error(e);
     }
+  };
 
-  }
-
-  const handleSignin = ()=> {
-    signUpService()
-  }
-
-  const handleShowAddress = () => {
-    console.log("show address")
-    dataDispatch({
-      type:"SET_SHOW_ADDRESS",
-      payload:true
-    })
-  }
-
-  return <div className="login-main">
-    {
-      token && !showAddress
-      ? <section className="logged-in-box flex-col">
-        Welcome,
-        <h2>{LSUser.user?.firstName}</h2>
-        <h2>{LSUser.user?.lastName}</h2>
-        <p className="flex-row flex-center">
-        <button className="btn" onClick={()=>handleLogOut()}>Log Out</button>
-        <button className="btn" onClick={()=>handleShowAddress()}>Manage Address</button>
-        </p>
-      </section> 
-      : token && showAddress 
-      ? <ManageAddress/>
-      : <section className="login-box">
-      {/* <>   */}
-        <button className={`btn-login ${!btnState ? "btn-active" : ""}`}  onClick={()=>setBtnState(false)}>Log In</button>
-        <button className={`btn-signin ${btnState ? "btn-active" : ""}`} onClick={()=>setBtnState(true)}>Sign Up</button>
-        <h2 className="login-heading lbl-sign">{btnState ? "Sign up Page" : "Log in Page"}</h2>
-        <label htmlFor="username" className="user-name lbl-sign">Username: 
-        <input type="text" name="username" placeholder="Enter email id" ref={emailRef} />
-        </label>
-        <label htmlFor="password" className="password lbl-sign">Password: 
-        <input type="password" name="password" placeholder="Enter password" ref={passwordRef} />
-        </label>
-        <button className="btn btn-submit" onClick={btnState ? ()=>handleSignin() : ()=>handleLogin()} >{btnState ? "Sign Up > " : "Log In >"}</button>
-        <button className="btn test-user" onClick={()=>handleTestUser()}> Test User</button>
-      {/* </> */}
-    </section>
-    }
-  </div>;
+  return (
+    <div className="login-main">
+      {token ? (
+        <UserProfile />
+      ) : (
+        <section className="login-box">
+          {/* <>   */}
+          <button
+            className={`btn-login ${!btnState ? "btn-active" : ""}`}
+            onClick={() => setBtnState(false)}
+          >
+            Log In
+          </button>
+          <button
+            className={`btn-signin ${btnState ? "btn-active" : ""}`}
+            onClick={() => setBtnState(true)}
+          >
+            Sign Up
+          </button>
+          <h2 className="login-heading lbl-sign">
+            {btnState ? "New User Sign In" : "Existing User Log In"}
+          </h2>
+          <label htmlFor="username" className="user-name lbl-sign">
+            Username:
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter email id"
+              ref={emailRef}
+            />
+          </label>
+          <label htmlFor="password" className="password lbl-sign">
+            Password:
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter password"
+              ref={passwordRef}
+            />
+          </label>
+          <button
+            className="btn btn-submit"
+            onClick={btnState ? () => handleSignin() : () => handleLogin()}
+          >
+            {btnState ? "Sign Up > " : "Log In >"}
+          </button>
+          <button className="btn test-user" onClick={() => handleTestUser()}>
+            {" "}
+            Test User
+          </button>
+        </section>
+      )}
+    </div>
+  );
 };
 
 export default Login;

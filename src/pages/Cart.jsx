@@ -1,27 +1,38 @@
 import { useContext } from "react";
 import { DataContext } from "../index";
 import CartProductCard from "../components/CartProductCard";
+import Coupons from "../components/Coupons";
 import Emptiness from "../components/Emptiness";
 import {getFinPrice, getRandomNumber} from "../utils"
-import Coupons from "../components/Coupons";
+import { useNavigate } from "react-router-dom";
+
 const Cart = () => {
   const {
     data: { cart },
   } = useContext(DataContext);
+  const navigate = useNavigate()
   const getRandomDay = getRandomNumber(2,5)
   const finPrice = getFinPrice(cart)
 
   const isCartEmpty = cart.length === 0 ? true : false;
   const {data:{showCoupon,couponValue},dataDispatch} = useContext(DataContext)
+
+  const couponValueRs = Math.floor((finPrice.finSP + cart.length*10)* couponValue * 0.01,1 )
+  const discountValueRs = finPrice.finCP - finPrice.finSP
+  const packingValueRs = cart.length*10
+
   const handleShowCoupon = () => {
       dataDispatch({
           type: "SET_COUPON",
           payload: true,
       })
   }
-  const couponValueRs = Math.floor((finPrice.finSP + cart.length*10)* couponValue * 0.01,1 )
-  const discountValueRs = finPrice.finCP - finPrice.finSP
-  const packingValueRs = cart.length*10
+
+  const handleCheckout = () => {
+    navigate("/checkout")
+  }
+
+    
   return isCartEmpty ? (
     <Emptiness  pageName="Cart" />
   ) : (
@@ -74,10 +85,9 @@ const Cart = () => {
               COD Available.
             </span>
           <p>
-
-        <button className="btn btn-cart" onClick={()=>handleShowCoupon()}>Apply Coupon {showCoupon}</button>
         {/* <button className="btn btn-cart" onClick={()=>navigate("/productlisting")}>Continue Shopping</button> */}
-        <button className="btn btn-cart">CheckOut </button>
+        <button className="btn btn-cart" onClick={()=>handleShowCoupon()}>Apply Coupon {showCoupon}</button>
+        <button className="btn btn-cart" onClick={()=>handleCheckout()}>CheckOut </button>
           </p>
         </section>
       </section>

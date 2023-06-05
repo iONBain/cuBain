@@ -3,7 +3,7 @@ import "./Pages.css";
 
 const WrongRoutePage = () => {
 
-    return <div className="flex-center">
+    return <div className="flex-center flex-grow">
     <h2 className="wish-center-empty">
     <span className="cursive accent">Oh nO!</span>
     Seems like we landed on 404 ^_^

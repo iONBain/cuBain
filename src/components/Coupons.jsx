@@ -42,16 +42,26 @@ const Coupons = ({ finPrice }) => {
               value={value}
               onChange={handleSetCouponValue}
               disabled={orderValue > finPrice.finSP}
-              checked={""+couponValue === ""+value}
+              checked={"" + couponValue === "" + value}
             />
-            <span className="accent">{`CUBAIN${value}`}</span> ({" "}
-            {`${value}% OFF`} ){" "}
+            <span
+              className={`accent ${
+                orderValue > finPrice.finSP && "color-grey"
+              }`}
+            >{`CUBAIN${value}`}</span>{" "}
+            ( {`${value}% OFF`} ){" "}
             <p className="color-grey sm">
               {" "}
               (Applicable on orders above Rs.{orderValue})
             </p>
           </label>
         ))}
+        {finPrice.finSP < 999 && (
+          <span className="accent">
+            All coupons disabled ?{" "}
+            <span className="color-white"> Try shopping for Rs.999 </span>{" "}
+          </span>
+        )}
         <button
           className="btn btn-coupon-apply"
           onClick={() => handleApplyCoupon()}

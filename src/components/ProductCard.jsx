@@ -3,10 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { DataContext } from "../contexts/DataContext";
 import ToastHandler, { getCostPrice } from "../utils";
 import "./ProductCard.css";
-import { addToCart } from "../utils/cartAPIs";
+import { addToCart } from "../services/cartAPIs";
 import { AuthContext } from "../contexts/AuthContext";
-import { addToWishlist, removeFromWishlist } from "../utils/wishAPIs";
-import { findItemIn } from "../utils/findItem";
+import { addToWishlist, removeFromWishlist } from "../services/wishAPIs";
+import { findItemIn } from "../services/findItem";
 
 const ProductCard = ({ item, wish }) => {
   const {
@@ -28,9 +28,9 @@ const ProductCard = ({ item, wish }) => {
   const navigate = useNavigate();
 
   const handleRedirect = () => {
-    navigate("/login")
+    navigate("/login");
     ToastHandler("warn", "Please login to continue");
-  }
+  };
 
   const handleAddToCart = () => {
     addToCart(item, token, dataDispatch);
@@ -47,9 +47,8 @@ const ProductCard = ({ item, wish }) => {
     }
   };
 
-
-  const isInCart = findItemIn(cart,item)
-  const isInWishlist = findItemIn(wishlist,item)
+  const isInCart = findItemIn(cart, item);
+  const isInWishlist = findItemIn(wishlist, item);
   const cp = getCostPrice(price, dp);
 
   return (
@@ -74,7 +73,13 @@ const ProductCard = ({ item, wish }) => {
         className={`btn add-to-cart ${isInCart ? "bg-dark" : ""} ${
           wish ? "w-80" : ""
         }`}
-        onClick={!token ? ()=> handleRedirect() : isInCart ? () => navigate("/cart") : () => handleAddToCart()}
+        onClick={
+          !token
+            ? () => handleRedirect()
+            : isInCart
+            ? () => navigate("/cart")
+            : () => handleAddToCart()
+        }
       >
         {isInCart ? "Go" : wish ? "Move" : "Add"} to Cart
       </button>
@@ -83,7 +88,9 @@ const ProductCard = ({ item, wish }) => {
           className={`btn add-to-wish ${
             isInWishlist ? "color-orange bg-dark" : ""
           }`}
-          onClick={!token ? ()=>handleRedirect()  : () => handleAddToWishlist()}
+          onClick={
+            !token ? () => handleRedirect() : () => handleAddToWishlist()
+          }
         >
           &#9829;
         </button>
