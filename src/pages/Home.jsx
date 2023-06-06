@@ -14,7 +14,7 @@ const Home = () => {
       <Loader home />
       <section className="flex-row home-hero">
         <section className="hero-left">
-          <h2 className="cursive f-xxl">HoLa Gracious Amigos</h2>
+          <h2 className="cursive f-xxl">HoLa Amigos ^_^</h2>
           <p className="normal-font f-xl">Welcome to cUBain !</p>
 
           {/* <section>

@@ -7,8 +7,8 @@
   justify-content: center;
   gap: 5rem;
   background-color:var(--darkBlue);
-  
 }
+
 .cat-card{
   color: var(--lightestBlue);
   padding: 1rem;
@@ -18,20 +18,21 @@
   text-align: center;
   border-radius: .5rem;
   transition: all 0.2s ease-in;
-  
 }
+
 .cat-card:hover{
   transform: scale(1.05);
   border-radius: 1rem;
   background-color: var(--shadowDarkBlue);
 }
+
 .cat-card p {
   font-weight: lighter !important;
   text-align: justify;
   margin-top: 1rem;
   color: var(--shadowLightBlue)
-
 }
+
 .cat-card img{
   border-radius: 50%;
   margin-bottom: 1rem;
@@ -51,6 +52,7 @@
     top: 0;
     z-index: 10;
 }
+
 .input-search{
   padding: 5px .5rem;
   border: none;
@@ -58,13 +60,16 @@
   min-width: 20%;
   outline: none;
 }
+
 .header-nav-icons-container{
   width: 10%;
   justify-content: space-around;
 }
+
 .header-cart{
   position: relative;
 }
+
 .header-cart span{
   position: absolute;
   padding: 4px;
@@ -81,7 +86,7 @@
 /* tooltips */
 .tooltip {
     position: relative;
-  }
+}
   
 .tooltip .tooltiptext {
     opacity: 0;
@@ -97,13 +102,13 @@
     margin-top: 5px;
     transition: all 0.2s ease-in;
     border-radius: 5px;
-  }
+}
   
 .tooltip:hover .tooltiptext {
     opacity: 1;
-  }
+}
 
-  /* Manage Address */
+/* Manage Address */
 .address-box{
     z-index: 100;
     min-height: 60vh;
@@ -121,19 +126,22 @@
   text-align: left;
   background-color: white;
   border-radius: 1rem;
+  padding-bottom: 1rem;
 }
+
 .carousel .slider-wrapper{
-  /* width: 50%; */
-  /* max-width: 80%; */
   text-align: center;
   height: 400px;
+}
+.carousel .slide{
+  opacity: 1;
 }
 .carousel-main{
   min-height: 100%;
   display: grid;
   place-items: center;
-  
 }
+
 .carousel-cards{
   display: grid;
   cursor: pointer;
@@ -144,6 +152,7 @@
   margin: 0 auto;
   padding: 2rem;
 }
+
 .carousel-cards img {
   border-radius: 50%;
 }
@@ -154,11 +163,10 @@
   width: 60%;
   aspect-ratio: 1/1;
 }
+
 .cen-top{
   top: 200px !important;
 }
-
-
 
 /* cart-p-cart */
 .cart-card-main{
@@ -169,20 +177,22 @@
   align-items: stretch;
   transition: all 0.2s ease-in;
 }
-.cart-card-main:hover{
 
+.cart-card-main:hover{
   box-shadow: 4px 12px 10px rgba(45, 156, 246, 0.153);
 }
+
 .cart-card-main:hover img{
   transform: scale(1);
-
 }
+
 .cart-img-cont{
   background-color: white;
   border-radius: 8px 0 0 8px;
   display: grid;
   place-items: center;
 }
+
 .cart-card-main img{
   transform: scale(0.8);
   transition: all 0.25s ease-in;
@@ -192,12 +202,15 @@
   gap: 10px;
   padding: 1rem;
 }
+
 .cart-details-con h2{
   max-width: 50%;
 }
+
 .btns-cart{
   min-width: 250px;
 }
+
 .cart-discount{
   background-color: var(--green);
   padding: 10px;
@@ -205,27 +218,31 @@
   border-radius: 10px;
   max-width: 50%;
 }
+
 .cart-cube-shape{
   margin-left: .7rem;
   background-color: var(--orange);
   color: var(--shadowDarkBlue);
 }
+
 .cart-remove{
   margin: 5px;
   width: 50%;
 }
+
 .cart-quant{
   align-self: flex-end;
   padding-bottom: 1rem;
   margin: 0 1rem 0 auto;
 }
+
 .cart-quant-btns{
   background-color: var(--shadowLightBlue);
   align-items: center ;
   justify-content: center;
   background-color: var(--shadowDarkBlue);
-  
 }
+
 .cart-quant-btns button{
   padding: .3rem .6rem;
   border: none;
@@ -236,11 +253,13 @@
   color: var(--lightestBlue);
   transition: all 0.3s ease-in;
 }
+
 .cart-quant-btns button:disabled{
   background-color: var(--grey);
   color: var(--darkBlue);
   pointer-events: none;
 }
+
 .cart-quant-btns span{
   cursor: default;
   color: var(--shadowLightBlue);
@@ -249,7 +268,6 @@
   padding: .3rem ;
 }
 
-
 /* filters */
 .clear-filters{
   text-decoration: underline;
@@ -257,6 +275,7 @@
   font-size:small;
   transition: all 0.2s ease-in;
 }
+
 .clear-filters:hover{
   color: var(--lightestBlue);
 }
@@ -270,15 +289,17 @@
     padding: 1rem;
     min-width: 15%;
     overflow-y: scroll;
-  }
+}
+
 .price-wrapper{
   min-width: 100%
 }
-  .slidecontainer {
-    width: 100%; 
-  }
   
-  /* The slider itself */
+.slidecontainer {
+    width: 100%; 
+}
+  
+/* slider */
 .slider {
     -webkit-appearance: none;  
     appearance: none;
@@ -327,6 +348,7 @@
   background-color: var(--shadowDarkBlue);
   min-height: 60px;
 }
+
 .footer-socials{
   display: flex;
   justify-content: space-between;
@@ -361,6 +383,7 @@
   position: relative;
   text-align: left;
 }
+
 .coupon-main:hover {
   box-shadow: 4px 12px 10px rgba(45, 156, 246, 0.153);
 }
@@ -370,10 +393,12 @@
   top: 1rem;
   right: 1rem;
 }
+
 .btn-coupon-apply{
   position: absolute;
   bottom: 2rem;
 }
+
 .coupon-main h2 {
   position: absolute;
   top: 1rem;
@@ -391,6 +416,7 @@
 .form-fields{
   min-width: 100%
 }
+
 .btn-add-container{
   width: 100%;
   text-align: center;
@@ -398,12 +424,13 @@
   justify-content: center;
   margin-top: 2rem;
 }
+
 .btn-address-add{
   min-width: 45%;
-  /* margin: 0 auto; */
   height: 30px;
   text-align: center;
 }
+
 .address-main-form{
   border: 2px solid var(--shadowLightBlue);
   max-width: 50%;
@@ -412,6 +439,15 @@
   padding: 1.5rem;
   transition: all 0.2s ease-in;
 }
+
 .address-main-form:hover{
   box-shadow: 4px 12px 10px rgba(45, 156, 246, 0.153);
+}
+
+/* address card */
+.transform-to-display-address{
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transform: scale(0.75) translate(-15%,-15%);
 }

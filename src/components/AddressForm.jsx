@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { DataContext } from "../contexts/DataContext";
+import Toasthandler from "../utils";
 
-const AddressForm = ({ address: add, onSave, onEdit }) => {
-  const { dataDispatch } = useContext(DataContext);
+const AddressForm = ({ address: add, onSave, onEdit, setterDisplay }) => {
+  const { data:{address}, dataDispatch } = useContext(DataContext);
   const formRef = useRef();
   const [formAddress, setFormAddress] = useState(
     add || {
@@ -26,7 +27,6 @@ const AddressForm = ({ address: add, onSave, onEdit }) => {
   };
   const handleDummyAddress = () => {
     setFormAddress(dummyAddress);
-    // onSave(formAddress,false);
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,15 +51,42 @@ const AddressForm = ({ address: add, onSave, onEdit }) => {
     }
   };
   const handleSubmit = (e) => {
-    console.log("yes submit", formRef.current.value);
-    console.log(formAddress, "form address");
     e.preventDefault();
-    // onSave(formAddress,true);
-    const newID = new Date()
-    dataDispatch({
-      type: "SET_ADDRESS",
-      payload: {...formAddress,_id:`id${newID.getSeconds()}`},
-    });
+    if (onEdit) {
+      dataDispatch({
+        type: "UPDATE_ADDRESS",
+        payload: formAddress
+      });
+      setterDisplay(false);
+      Toasthandler("success", "Address updated successfully");
+    } else {
+      const newID = new Date();
+      if (
+        formAddress.name === "" ||
+        formAddress.street === "" ||
+        formAddress.city === "" ||
+        formAddress.state === "" ||
+        formAddress.country === "" ||
+        formAddress.pincode === "" ||
+        formAddress.mobile === ""
+      ) {
+        Toasthandler("info", "Fill in form values to save");
+      } else {
+        dataDispatch({
+          type: "SET_ADDRESS",
+          payload: {
+            ...formAddress,
+            id: `id${newID.getMilliseconds()}${newID.getSeconds()}${newID.getMinutes()}${newID.getHours()}`,
+          },
+        });
+        setterDisplay(false);
+        Toasthandler("success", "Address added successfully");
+      }
+    }
+  };
+
+  const handleCancel = () => {
+    setterDisplay(false);
   };
 
   useEffect(() => {
@@ -85,7 +112,10 @@ const AddressForm = ({ address: add, onSave, onEdit }) => {
       >
         {/* mapper to loop through all fields of the form */}
         {formFields.map((field) => (
-          <div className="flex-row  gap-10 flex-center sp-bw form-fields">
+          <div
+            className="flex-row  gap-10 flex-center sp-bw form-fields"
+            key={field.name}
+          >
             <label key={field.name}>{field.label}:</label>
             <input
               type={field.type}
@@ -109,7 +139,9 @@ const AddressForm = ({ address: add, onSave, onEdit }) => {
         </section>
       </form>
       <section className="btn-add-container flex-row gap-10">
-        <button className="btn btn-address-add">Cancel</button>
+        <button className="btn btn-address-add" onClick={() => handleCancel()}>
+          Cancel
+        </button>
         <button
           className="btn btn-address-add"
           onClick={() => handleDummyAddress()}

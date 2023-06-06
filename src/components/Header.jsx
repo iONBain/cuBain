@@ -11,7 +11,6 @@ import { useContext } from "react";
 import { DataContext } from "../contexts/DataContext";
 
 const Header = () => {
-  // const navigate = useNavigate()
   const { data:{search,cart,wishlist},dataDispatch } = useContext(DataContext);
   const handleSearch = (e) => {
     dataDispatch({

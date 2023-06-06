@@ -91,8 +91,8 @@ const ProductDetails = () => {
         <p>
           Price: <span className="accent">Rs.{price}</span>{" "}
           <span className="color-grey sm strike">Rs.{cp}</span>
-          <p className="sm color-grey">**Inclusive all taxes</p>
         </p>
+          <p className="sm color-grey">**Inclusive all taxes</p>
       </section>
       <button
         className={`btn btn-details-cart ${isInCart && "bg-less-dark"}`}

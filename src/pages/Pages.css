@@ -370,15 +370,20 @@
     /* padding: 1rem; */
     align-items: top;
     width: 50%;
-    overflow-y: scroll;
     margin: 1rem;
+    overflow: hidden;
+}
+.checkout-display-address{
+    overflow-y: scroll;
+    flex-grow: 1;
+
 }
 .checkout-summary{
     margin: 1rem;
     width: 50%;
     /* padding: 1rem; */
     gap: 1.5rem;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 .checkout-summary h2 {
     text-align: center;
@@ -387,6 +392,11 @@
     display: flex;
     justify-content: space-between;
 
+}
+.checkout-details-scroll{
+
+    overflow-y: scroll;
+    flex-grow: 1;
 }
 .checkout-summary-details{
     margin: 0 auto;

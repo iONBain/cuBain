@@ -4,11 +4,15 @@ import ToastHandler from "../utils";
 import UserProfile from "../components/UserProfile";
 import "./Pages.css";
 import { DataContext } from "../contexts/DataContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [btnState, setBtnState] = useState(false);
   const { token, setToken, loginUser, signUpUser } = useContext(AuthContext);
   const { dataDispatch } = useContext(DataContext);
+  const navigate = useNavigate()
+
+  const defaultAddress = { id: "1", name:"neo Grammer", street:"Programmer's Colony", city:"BLR", state:"Karnataka", country:"India", pincode:"560066", mobile:"1100110011" }
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -37,7 +41,8 @@ const Login = () => {
         } else {
           setToken(localStorage.getItem("login"));
           dataDispatch({
-            type: "SET_DEFAULT_ADDRESS",
+            type: "SET_ADDRESS",
+            payload: defaultAddress
           });
         }
       }
@@ -54,7 +59,8 @@ const Login = () => {
       await loginUser(bodyLoginTest);
       setToken(localStorage.getItem("login"));
       dataDispatch({
-        type: "SET_DEFAULT_ADDRESS",
+        type: "SET_ADDRESS",
+        payload:defaultAddress
       });
     } catch (e) {
       console.error(e);

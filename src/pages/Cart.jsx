@@ -30,6 +30,10 @@ const Cart = () => {
 
   const handleCheckout = () => {
     navigate("/checkout")
+    dataDispatch({
+      type:"SET_DELIVERY_ADDRESS",
+      payload:""
+    })
   }
 
     
@@ -76,7 +80,7 @@ const Cart = () => {
             </span>
           </span>
             <span className="mar-up-10">
-              Get your <span className="color-orange">{finPrice.totalCubes} cubes </span> deliverd in <span className="color-orange">
+              Get your <span className="color-orange">{finPrice.totalCubes} cubes </span> delivered in <span className="color-orange">
                 {getRandomDay} days :)
                 
                 </span>
@@ -85,7 +89,7 @@ const Cart = () => {
               COD Available.
             </span>
           <p>
-        {/* <button className="btn btn-cart" onClick={()=>navigate("/productlisting")}>Continue Shopping</button> */}
+        
         <button className="btn btn-cart" onClick={()=>handleShowCoupon()}>Apply Coupon {showCoupon}</button>
         <button className="btn btn-cart" onClick={()=>handleCheckout()}>CheckOut </button>
           </p>

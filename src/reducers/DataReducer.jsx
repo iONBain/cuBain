@@ -1,5 +1,4 @@
-const defaultAddress = [{ id: 1, name:"Bhaskar A", street:"Nehru Colony", city:"Bhilai", state:"Chhattisgarh", country:"India", pincode:"490006", mobile:"9993330000" },
-]
+
 export const initialState = {
   products: [],
   category: [],
@@ -18,6 +17,7 @@ export const initialState = {
   showCoupon: false,
   couponValue: 0,
   showAddress: false,
+  deliveryAddress:null
 };
 
 export function dataReducer(state, action) {
@@ -37,20 +37,26 @@ export function dataReducer(state, action) {
           ...product,
         })),
       };
+    case "SET_DELIVERY_ADDRESS":
+      return {
+        ...state,
+        deliveryAddress: action.payload,
+      };
     case "SET_ADDRESS":
       return {
         ...state,
         address: [...state.address, action.payload],
       };
+    case "UPDATE_ADDRESS":
+      return {
+        ...state,
+        address: state.address.map((item)=> item.id===action.payload.id ? action.payload : item )
+      
+      }
     case "DELETE_ADDRESS":
       return {
         ...state,
-        address: state.address.filter(({_id})=> _id!==action.payload._id) ,
-      };
-    case "SET_DEFAULT_ADDRESS":
-      return {
-        ...state,
-        address: defaultAddress,
+        address: state.address.filter(({id})=> id!==action.payload.id) ,
       };
     case "PRICE_RANGE":
       return {
