@@ -48,7 +48,7 @@ const ManageAddress = () => {
   return (
     <div className="address-page-main ">
       <section className="address-list-left">
-        <h2> <span className="accent cursive"> Address Management </span> <span className="underline-text" onClick={()=>handleNavBack()} > {"< "}Back</span> </h2>
+        <h2><span className="underline-text" onClick={()=>handleNavBack()} > {"<<"}</span>  <span className="accent cursive"> Address Management </span> </h2>
         {address &&
           address.map((item) => (
             <AddressCard
