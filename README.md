@@ -1,7 +1,7 @@
 ## cUBain - da'Cube WebApp
 <div align="center">
 <img src="https://github.com/iONBain/cuBain/blob/master/public/productListing.png" />
-
+ 
 # [Visit cUBain](https://cubain.netlify.app)
 
 </div>
@@ -98,4 +98,5 @@ $ npm start
 - MockBee (uses MirageJS) for Backend
 
 ## **WebApp in Action-**
-[![Video Placeholder](https://github.com/iONBain/cuBain/blob/master/public/productListing.png)](https://www.loom.com/share/3a25658b1de64cbc8144c27c61fe1e3c)
+[Click Here](https://www.loom.com/share/3a25658b1de64cbc8144c27c61fe1e3c)
+
