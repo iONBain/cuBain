@@ -98,4 +98,4 @@ $ npm start
 - MockBee (uses MirageJS) for Backend
 
 ## **WebApp in Action-**
-[Click here](https://www.loom.com/share/3a25658b1de64cbc8144c27c61fe1e3c))
+[![Video Placeholder](https://github.com/iONBain/cuBain/blob/master/public/productListing.png)](https://www.loom.com/share/3a25658b1de64cbc8144c27c61fe1e3c)
