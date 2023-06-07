@@ -288,6 +288,7 @@
 .address-right{
     padding: 1rem;
     width: 50%;
+    overflow-y: scroll;
 }
 .address-card-item {
     border: 2px solid var(--shadowLightBlue);
