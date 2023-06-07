@@ -29,8 +29,8 @@ const CarouselComponent = ({ productsToShow, isPageSummary }) => {
               key={i._id}
               onClick={() => handleNavToProduct(i._id)}
             >
-              <img src={i.imgLink} alt={i.name} />
-              <h1>{i.name}</h1>
+              <img src={i.imgLink} alt={i.name}/>
+              <h2>{i.name}</h2>
               {!isPageSummary && (
                 <>
                   <p className="rating cara-top">{i.rating} &#9733;</p>

@@ -131,14 +131,15 @@
 
 .carousel .slider-wrapper{
   text-align: center;
-  height: 400px;
+  height: 300px;
 }
 .carousel .slide{
-  opacity: 1;
+  opacity: 1  !important;
 }
 .carousel-main{
   min-height: 100%;
   display: grid;
+  max-width: 80%;
   place-items: center;
 }
 
@@ -147,14 +148,15 @@
   cursor: pointer;
   place-items: center;
   min-height: 100%;
-  height: 400px !important;
   color: var(--darkBlue);
   margin: 0 auto;
-  padding: 2rem;
+  padding: 3rem;
+  padding-bottom: 0;
 }
 
 .carousel-cards img {
   border-radius: 50%;
+  max-width: 80%;
 }
 
 .carousel .thumb{
