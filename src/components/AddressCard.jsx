@@ -1,7 +1,11 @@
+import { useContext } from "react"
+import { DataContext } from "../contexts/DataContext"
 
-const AddressCard = ({ item, checkout, displayOnly, onEdit, onDelete, onSelect }) => {
+const AddressCard = ({ item, checkout, displayOnly, onEdit, onDelete, onSelect, isSelectDeliveryAddress }) => {
+  const {data:{deliveryAddress}} = useContext(DataContext)
+  const isSelectedAddress = item?.id === deliveryAddress?.id
   return (
-    <section className={`address-card-item ${displayOnly && "transform-to-display-address"} ` } key={item?.id}>
+    <section className={`address-card-item ${displayOnly && "transform-to-display-address"} ${isSelectedAddress && isSelectDeliveryAddress &&"address-card-item-highlight"} ` } key={item?.id}>
       <p className="f-l accent">{item?.name}</p>
       <p>
         {item?.street}, {item?.city}, {item?.state}
@@ -16,7 +20,7 @@ const AddressCard = ({ item, checkout, displayOnly, onEdit, onDelete, onSelect }
           className="btn btn-delete-address"
           onClick={() => onSelect(item)}
         >
-          Select
+          {isSelectedAddress && isSelectDeliveryAddress ? "Selected" : "Select"}
         </button>
       ) : (
         <>

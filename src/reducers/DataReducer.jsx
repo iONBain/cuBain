@@ -17,7 +17,8 @@ export const initialState = {
   showCoupon: false,
   couponValue: 0,
   showAddress: false,
-  deliveryAddress:null
+  deliveryAddress:null,
+  orderHistory:[]
 };
 
 export function dataReducer(state, action) {
@@ -128,6 +129,7 @@ export function dataReducer(state, action) {
         cart: [],
         wishlist: [],
         address: [],
+        orderDetails: []
       };
     case "SET_SHOW_ADDRESS":
       return {
@@ -149,6 +151,11 @@ export function dataReducer(state, action) {
         ...state,
         loader: action.payload,
       };
+    case "SET_ORDER_HISTORY": 
+      return {
+        ...state,
+        orderHistory: [...state.orderHistory, action.payload]
+      }
     case "CLEAR_FILTER":
       return {
         ...state,

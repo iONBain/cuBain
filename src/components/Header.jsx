@@ -55,10 +55,6 @@ const Header = () => {
           <FontAwesomeIcon icon={faUserCircle} size="lg" />
           <p className="tooltiptext color-white"> Login</p>
         </NavLink>
-        {/* <NavLink to="/productlisting" className="no-style tooltip">
-          <FontAwesomeIcon icon={faCube} size="lg" />
-          <p className="tooltiptext"> Home</p>
-        </NavLink> */}
       </section>
     </header>
 

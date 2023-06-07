@@ -451,3 +451,6 @@
   margin: 0 !important;
   transform: scale(0.75) translate(-15%,-15%);
 }
+.address-card-item-highlight{
+  background-color: rgba(81, 85, 131, 0.367);
+}

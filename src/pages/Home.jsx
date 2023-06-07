@@ -17,17 +17,6 @@ const Home = () => {
           <h2 className="cursive f-xxl">HoLa Amigos ^_^</h2>
           <p className="normal-font f-xl">Welcome to cUBain !</p>
 
-          {/* <section>
-            <p className="m-w-50">
-              The number of possible combinations of a Rubik's Cube is
-              staggering. It has approximately 43 quintillion
-              (43,252,003,274,489,856,000) possible configurations.
-            </p>
-            <h3>
-              And that too for a <span className="cursive"> REGULAR 3x3 !</span>{" "}
-            </h3>
-          </section> */}
-
           <p className="color-white">
             Check out our favourite cubes {">>>>>>>>>>>>"}
           </p>

@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 
-const ToastHandler = (type, message) => {
+const ToastHandler = (type, message,timeToClose) => {
   if (type === 'error') {
     toast.error(message, {
       position: "bottom-right",
@@ -45,9 +45,20 @@ const ToastHandler = (type, message) => {
       progress: undefined,
       theme: "dark",
       });
-
+    }
+    else if (type=== 'nav'){
+      toast.info(message, {
+        position: "bottom-right",
+        autoClose: timeToClose,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
+    }
  
-  }
 };
 
 const getRandomNumber = (min, max) => {
@@ -69,5 +80,25 @@ const getFinPrice = (cart) => {
   );
 }
 
-export {getRandomNumber,getCostPrice,getFinPrice}
+const getOrderDate = () => {
+  const formatDate = (date) => {
+    const options = {
+      month: 'long',
+      day: 'numeric',
+      year: '2-digit',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    };
+  
+    const formattedDate = date.toLocaleString('en-US', options);
+    return formattedDate;
+  }
+  
+  const currentDate = new Date();
+  const formattedDate = formatDate(currentDate);
+  return formattedDate
+}
+
+export {getRandomNumber,getCostPrice,getFinPrice,getOrderDate}
 export default ToastHandler

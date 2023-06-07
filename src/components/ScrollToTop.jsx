@@ -19,8 +19,7 @@ export default function ScrollToTop() {
               });
         }, 
         
-        // 3500);
-        500);
+        3500);
     }, [pathname,dataDispatch]);
 
     return null;

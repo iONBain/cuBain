@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { DataContext } from "../contexts/DataContext";
 import Toasthandler from "../utils";
 
-const AddressForm = ({ address: add, onSave, onEdit, setterDisplay }) => {
-  const { data:{address}, dataDispatch } = useContext(DataContext);
+const AddressForm = ({ address: add, onEdit, setterDisplay }) => {
+  const { dataDispatch } = useContext(DataContext);
   const formRef = useRef();
   const [formAddress, setFormAddress] = useState(
     add || {
@@ -106,7 +106,6 @@ const AddressForm = ({ address: add, onSave, onEdit, setterDisplay }) => {
     <div className="address-main-form">
       <form
         ref={formRef}
-        // defaultValue={formRef.current.value}
         onSubmit={(e) => handleSubmit(e)}
         className="flex-col gap-10 flex-center"
       >
@@ -132,7 +131,6 @@ const AddressForm = ({ address: add, onSave, onEdit, setterDisplay }) => {
           <button
             type="submit"
             className="btn btn-address-add"
-            // onClick={()=>handleSubmit()}
           >
             {onEdit ? "Save" : "Add"}
           </button>

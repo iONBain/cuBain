@@ -236,3 +236,9 @@ select{
     text-decoration: underline;
     cursor: pointer;
 }
+.borders{
+    border: 2px solid;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin: .5rem 0;
+}

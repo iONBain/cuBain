@@ -68,7 +68,6 @@ const ProductCard = ({ item, wish }) => {
           </p>
         </div>
       </Link>
-
       <button
         className={`btn add-to-cart ${isInCart ? "bg-dark" : ""}`}
         onClick={
@@ -81,7 +80,6 @@ const ProductCard = ({ item, wish }) => {
       >
         {isInCart ? "Go" : wish ? "Move" : "Add"} to Cart
       </button>
-      {/* {!wish && ( */}
         <button
           className={`btn add-to-wish ${
             isInWishlist ? "color-orange bg-dark" : ""
@@ -92,7 +90,6 @@ const ProductCard = ({ item, wish }) => {
         >
           &#9829;
         </button>
-      {/* )} */}
     </div>
   );
 };

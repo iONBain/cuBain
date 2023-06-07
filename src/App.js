@@ -15,6 +15,8 @@ import WrongRoutePage from "./pages/WrongRoutePage";
 import { IsAuthDone } from "./components/IsAuthDone";
 import ManageAddress from "./pages/ManageAddress";
 import Checkout from "./pages/Checkout";
+import OrderHistory from "./pages/OrderHistory";
+import OrderSummary from "./pages/OrderSummary";
 function App() {
   return (
     <div className="App">
@@ -34,6 +36,8 @@ function App() {
           <Route path="/wishlist" element = {<Wishlist />} />
           <Route path="/checkout" element = {<Checkout />} /> 
           <Route path="/manage_address" element = {<ManageAddress />} />
+          <Route path="/order_summary" element = {<OrderSummary />} />
+          <Route path="/order_history" element = {<OrderHistory />} />
         </Route>
       </Routes>
       <Footer/>
