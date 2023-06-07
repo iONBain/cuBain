@@ -44,7 +44,7 @@ const UserProfile = () => {
         <p> Total Orders - <span className="accent">{orderHistory.length} </span> </p>
         </section>
         <p className="flex-row flex-center gap-10 btns-user-profile">
-        <button className="btn btn-user-profile" onClick={()=>handleBackToShopping()}>{"< "} Back to shopping</button>
+        <button className="btn btn-user-profile" onClick={()=>handleBackToShopping()}>Back to shopping</button>
         {/* <button className="btn" onClick={()=>handleLogOut()}>Edit Profile</button> */}
         <button className="btn btn-user-profile" onClick={()=>handleShowAddress()}>Manage Address</button>
         <button className="btn btn-user-profile" onClick={()=>handlePreviousOrders()}>Previous Orders</button>

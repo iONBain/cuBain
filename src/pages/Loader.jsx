@@ -9,7 +9,7 @@ const Loader = ({home,order}) => {
   return (
     <div className={`loader-main flex-col  ${!loader && "none"} `}>
       <FontAwesomeIcon className="loader" icon={faCube} size="lg" />
-      <h2>{home ? "building cUBain site :)" : order ? "Placing your order ..." :"fetching awesome cubes for you :0"}</h2>
+      <h2>{home ? "building cUBain for you :)" : order ? "Placing your order ;p" :"fetching awesome cubes for you :0"}</h2>
     </div>
   );
 };

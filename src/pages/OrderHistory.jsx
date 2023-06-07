@@ -14,7 +14,7 @@ const OrderHistory = () => {
     <Emptiness pageName="Order history" />
   ) : (
     <div className="order-history-main flex-grow flex-col gap-10">
-        <h2> <span className="underline-text" onClick={()=> navigate("/login")}>{"<"}</span><span className="accent cursive f-xl"> Order History  </span></h2>
+        <h2> <span className="underline-text" onClick={()=> navigate("/login")}>{"<<"}</span><span className="accent cursive f-xl"> Order History ({orderHistory?.length})  </span></h2>
       {orderHistory.map((item) => (
         <OrderCard orderDetails={item} borders />
       ))}

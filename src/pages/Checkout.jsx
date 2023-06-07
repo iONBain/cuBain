@@ -60,11 +60,11 @@ const Checkout = () => {
       navigate("/order_summary");
       ToastHandler("nav", "Placing your order",3000);
       setTimeout(() => {
-          ToastHandler("nav", "Navigating to your orders",5000);
+          ToastHandler("nav", "Navigating to your orders",8000);
         }, 3500);
       setTimeout(() => {
-        navigate("/login")
-      }, 8000);
+        navigate("/order_history")
+      }, 12000);
     }
   };
 
