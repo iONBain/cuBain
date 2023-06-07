@@ -2,7 +2,7 @@
 <div align="center">
 <img src="https://github.com/iONBain/cuBain/blob/master/public/productListing.png" />
 
-# [Visit cUBain](https://cu-bain.vercel.app/)
+# [Visit cUBain](https://cubain.netlify.app)
 
 </div>
 
@@ -98,4 +98,4 @@ $ npm start
 - MockBee (uses MirageJS) for Backend
 
 ## **WebApp in Action-**
-[Coming soon](https:/google.com)
+[Click here](https://www.loom.com/share/3a25658b1de64cbc8144c27c61fe1e3c))
