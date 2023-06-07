@@ -1,5 +1,10 @@
-## cUBain - Cube Website
----
+## cUBain - da'Cube WebApp
+<div align="center">
+<img src="https://github.com/iONBain/cuBain/blob/master/public/productListing.png" />
+
+# [Visit cUBain](https://cu-bain.vercel.app/)
+
+</div>
 
 ## Install and run locally
 ```
@@ -11,7 +16,6 @@ $ npm start
 
 
 ## **Pages and Features**
----
 
 - Home Page
     - It lists down the top recommended cubes to buy as a carousel component
@@ -84,8 +88,6 @@ $ npm start
     ---
 
 ## **Tech/ Lib(s) Built with-**
----
-
 - React JS
 - React Context API 
 - React Reducer
@@ -96,5 +98,4 @@ $ npm start
 - MockBee (uses MirageJS) for Backend
 
 ## **WebApp in Action-**
----
 [Coming soon](https:/google.com)
