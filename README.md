@@ -1,10 +1,13 @@
-## cUBain - da'Cube WebApp
-<div align="center">
-<img src="https://github.com/iONBain/cuBain/blob/master/public/productListing.png" />
- 
-# [Visit cUBain](https://cubain.netlify.app)
+## cUBain - Cube WebApp
 
-</div>
+
+<div align="center">
+  <img src="https://github.com/iONBain/cuBain/blob/master/public/logo192.png" alt="logo"/>
+ <h1> <a href="https://cubain.netlify.app" > Visit cUBain </a></h1>
+    <p>cUBain is an E-Commerce Web App where you shop for Rubik's cubes.</p>
+ </div>
+ 
+
 
 ## Install and run locally
 ```
@@ -98,5 +101,8 @@ $ npm start
 - MockBee (uses MirageJS) for Backend
 
 ## **WebApp in Action-**
+
+
+
 [Click Here](https://www.loom.com/share/3a25658b1de64cbc8144c27c61fe1e3c)
 
